@@ -12,7 +12,9 @@ const StyledContent = styled.div`
 
 const Layout = ({ children, location }) => {
   const isHome = location.pathname === '/';
-  const loaderShownInSession = sessionStorage.getItem('loaded') === '1' ?? false;
+  const isBrowser = () => typeof window !== 'undefined';
+  const loaderShownInSession =
+    isBrowser() && (window.sessionStorage.getItem('loaded') === '1' ?? false);
   const [isLoading, setIsLoading] = useState(isHome && !loaderShownInSession);
 
   // Sets target="_blank" rel="noopener noreferrer" on external links
@@ -30,7 +32,7 @@ const Layout = ({ children, location }) => {
 
   const onFinishLoading = () => {
     setIsLoading(false);
-    sessionStorage.setItem('loaded', '1');
+    isBrowser() && window.sessionStorage.setItem('loaded', '1');
   };
 
   useEffect(() => {
