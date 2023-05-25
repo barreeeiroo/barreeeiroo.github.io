@@ -12,7 +12,8 @@ const StyledContent = styled.div`
 
 const Layout = ({ children, location }) => {
   const isHome = location.pathname === '/';
-  const [isLoading, setIsLoading] = useState(isHome);
+  const loaderShownInSession = sessionStorage.getItem('loaded') === '1' ?? false;
+  const [isLoading, setIsLoading] = useState(isHome && !loaderShownInSession);
 
   // Sets target="_blank" rel="noopener noreferrer" on external links
   const handleExternalLinks = () => {
@@ -25,6 +26,11 @@ const Layout = ({ children, location }) => {
         }
       });
     }
+  };
+
+  const onFinishLoading = () => {
+    setIsLoading(false);
+    sessionStorage.setItem('loaded', '1');
   };
 
   useEffect(() => {
@@ -59,7 +65,7 @@ const Layout = ({ children, location }) => {
           </a>
 
           {isLoading && isHome ? (
-            <Loader finishLoading={() => setIsLoading(false)} />
+            <Loader finishLoading={onFinishLoading} />
           ) : (
             <StyledContent>
               <Nav isHome={isHome} />
