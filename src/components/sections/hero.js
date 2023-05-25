@@ -67,7 +67,7 @@ const Hero = () => {
       <p>
         I'm a software engineer focused on distributed systems and reliable web development,
         designing scalable architectures aiming for the best digital fault-tolerance experience.
-        Currently, I'm finishing my Computer Engineering degree working on{' '}
+        Currently, I'm finishing my Computer Engineering degree researching for{' '}
         <a
           href="https://github.com/barreeeiroo/TFG-Timetable-Solvers-ASP"
           target="_blank"

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { Link } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 import { srConfig } from '@config';
@@ -145,7 +146,7 @@ const About = () => {
               explore new opportunities, such as becoming{' '}
               <a href="https://www.kodular.io">a company founder</a>, taking an internship at a{' '}
               <a href="https://amazon.jobs/en/teams/time-and-attendance">big-tech company</a> and
-              work on some <a href="/archive">other personal projects</a>.
+              work on some <Link to="/archive">other personal projects</Link>.
             </p>
 
             <p>
@@ -155,7 +156,7 @@ const About = () => {
               <a href="https://summerofcode.withgoogle.com/archive/2020/projects/5789768257896448">
                 MIT App Inventor
               </a>
-              , and contribute to the development of my home town by{' '}
+              , and helping others on the development of my town by{' '}
               <a href="https://proteccioncivil.sdc.gal">volunteering</a>.
             </p>
 
