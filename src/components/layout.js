@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
-import { Head, Loader, Nav, Social, Email, Footer } from '@components';
+import { Email, Footer, Head, Loader, Nav, Social } from '@components';
 import { GlobalStyle, theme } from '@styles';
 
 const StyledContent = styled.div`
@@ -13,9 +13,7 @@ const StyledContent = styled.div`
 const Layout = ({ children, location }) => {
   const isHome = location.pathname === '/';
   const isBrowser = () => typeof window !== 'undefined';
-  const loaderShownInSession =
-    isBrowser() && (window.sessionStorage.getItem('loaded') === '1' ?? false);
-  const [isLoading, setIsLoading] = useState(isHome && !loaderShownInSession);
+  const [isLoading, setIsLoading] = useState(isHome);
 
   // Sets target="_blank" rel="noopener noreferrer" on external links
   const handleExternalLinks = () => {
