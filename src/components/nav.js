@@ -139,6 +139,22 @@ const StyledLinks = styled.div`
           font-size: var(--fz-xxs);
           text-align: right;
         }
+
+        &:after {
+          display: block;
+          content: '';
+          border-bottom: solid 1px;
+          transform: scaleX(0);
+          transition: transform 250ms ease-in-out;
+          transform-origin: 100% 50%;
+        }
+
+        &:hover {
+          &:after {
+            transform: scaleX(1);
+            transform-origin: 0 50%;
+          }
+        }
       }
     }
   }
