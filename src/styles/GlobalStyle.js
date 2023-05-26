@@ -65,6 +65,10 @@ const GlobalStyle = createGlobalStyle`
     background-color: var(--dark-slate);
     border: 3px solid var(--navy);
     border-radius: 10px;
+
+    &:hover {
+      background-color: var(--green);
+    }
   }
 
   body {
