@@ -22,6 +22,7 @@ const StyledProjectsSection = styled.section`
     &:after {
       bottom: 0.1em;
     }
+    margin-bottom: 15px;
   }
 
   .projects-grid {
