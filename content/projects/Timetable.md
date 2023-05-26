@@ -12,3 +12,6 @@ tech:
   - AWS
 showInProjects: true
 ---
+
+Fully serverless and flexible platform to manage all schedules and timetables for a university, with native timetable
+solving algorithms implemented.
