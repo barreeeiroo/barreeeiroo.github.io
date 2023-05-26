@@ -8,7 +8,7 @@ tech:
   - Java
   - Python
   - Android
-  - GCP & AWS
+  - GCP
 cta: 'https://community.kodular.io/t/app-inventor-kodular-planned-collaboration/214909?u=diego'
 ---
 
