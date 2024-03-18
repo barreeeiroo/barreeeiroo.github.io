@@ -2,7 +2,7 @@
 date: '2023-01'
 title: 'TFG Timetable'
 github: 'https://github.com/barreeeiroo/TFG-Timetable'
-external: 'https://horarios.barreiro.xyz/'
+external: 'https://timetable.barreiro.dev/'
 android: ''
 ios: ''
 company: 'USC'

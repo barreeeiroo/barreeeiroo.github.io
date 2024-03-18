@@ -1,11 +1,13 @@
 ---
 date: '2022-07-18'
-title: 'Software Dev Engineer Intern'
+title: 'Software Dev Engineer'
 company: 'Amazon'
 location: 'Dublin, IE'
-range: 'July - October 2022'
+range: 'September 2023 - Present'
 url: 'https://amazon.jobs/en/teams/time-and-attendance'
 ---
+
+Transitioned from Intern (July - October 2022) to Full-Time engineer (September 2023 onwards).
 
 - Collaborated with experienced cross-disciplinary Amazonians to conceive, design, and bring to market innovative products and services.
 - Designed and built innovative technologies in a large, distributed computing environment and help lead fundamental changes in the industry.

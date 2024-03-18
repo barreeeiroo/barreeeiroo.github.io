@@ -138,7 +138,7 @@ const About = () => {
             <p>
               Hello! My name is Diego Barreiro Pérez and I love creating things that live on the
               internet. With several years of programming under my belt, I've built a strong
-              foundation in both small and large-scale projects.
+              foundation with both small and large-scale projects.
             </p>
 
             <p>
@@ -150,9 +150,9 @@ const About = () => {
             </p>
 
             <p>
-              Currently pursuing a Bachelor's degree in Computer Engineering in my home city, I've
-              also had the amazing opportunity to go on an exchange program and gain practical
-              experience through a summer project at{' '}
+              While pursuing a Bachelor's degree in Computer Engineering in my home city, I've also
+              had the amazing opportunity to go on an exchange program and gain practical experience
+              through a summer project at{' '}
               <a href="https://summerofcode.withgoogle.com/archive/2020/projects/5789768257896448">
                 MIT App Inventor
               </a>
