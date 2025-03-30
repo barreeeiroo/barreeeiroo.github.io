@@ -2,10 +2,10 @@ const config = require('./src/config');
 
 module.exports = {
   siteMetadata: {
-    title: 'Diego Barreiro',
+    title: 'Diego Barreiro Perez',
     description:
       'Diego Barreiro is a software engineer focused on distributed systems and reliable web development.',
-    siteUrl: 'https://diego.barreiro.xyz',
+    siteUrl: 'https://diego.barreiro.dev',
     image: '/og.jpeg',
     twitterUsername: '@barreeeiroo',
   },
