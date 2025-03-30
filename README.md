@@ -1,6 +1,6 @@
 # Diego Barreiro
 
-Welcome to my personal website, hosted at **[diego.barreiro.xyz](https://diego.barreiro.xyz)**!
+Welcome to my personal website, hosted at **[diego.barreiro.dev](https://diego.barreiro.dev)**!
 
 ## Acknowledgments
 
