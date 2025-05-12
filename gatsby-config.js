@@ -4,7 +4,7 @@ module.exports = {
   siteMetadata: {
     title: 'Diego Barreiro Perez',
     description:
-      'Diego Barreiro is a software engineer focused on distributed systems and reliable web development.',
+      'Diego Barreiro Perez is a software engineer focused on distributed systems and reliable web development.',
     siteUrl: 'https://diego.barreiro.dev',
     image: '/og.jpeg',
     twitterUsername: '@barreeeiroo',
