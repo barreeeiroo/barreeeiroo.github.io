@@ -86,7 +86,7 @@ const Footer = () => (
 
     <StyledCredit tabindex="-1">
       <a href="https://github.com/barreeeiroo/barreeeiroo.github.io">
-        <div>Diego Barreiro &copy; 2025</div>
+        <div>Diego Barreiro Perez &copy; 2025</div>
       </a>
     </StyledCredit>
   </StyledFooter>
