@@ -1,4 +1,4 @@
-# Diego Barreiro
+# Diego Barreiro Pérez
 
 Welcome to my personal website, hosted at **[diego.barreiro.dev](https://diego.barreiro.dev)**!
 
