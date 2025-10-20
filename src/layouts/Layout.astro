@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import SideDecoration from '../components/SideDecoration.astro';
 import { FULL_NAME, ROLE } from '../config';
 
 interface Props {
@@ -26,8 +27,9 @@ const pageTitle = title ? `${title} - ${FULL_NAME}` : `${FULL_NAME} - ${ROLE}`;
   </head>
   <body class="bg-gradient-to-br from-navy via-black to-navy text-white overflow-x-hidden">
     <Navbar />
+    <SideDecoration />
     <!-- Content Wrapper -->
-    <div class="relative pt-16" style="z-index: 10;">
+    <div class="relative pt-16 md:px-20" style="z-index: 10;">
       <slot />
       <Footer />
     </div>

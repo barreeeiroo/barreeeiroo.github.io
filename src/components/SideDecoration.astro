@@ -1,0 +1,74 @@
+---
+import { Icon } from 'astro-icon/components';
+import { EMAIL_ADDRESS, GITHUB_LINK, LINKEDIN_LINK, INSTAGRAM_LINK, X_LINK } from '../config';
+---
+
+<!-- Only show on desktop (md and up) -->
+<div class="hidden md:block">
+  <!-- Left side: Social media icons -->
+  <div id="left-decoration" class="fixed left-12 bottom-0 flex flex-col items-center gap-6" style="z-index: 11;">
+    <a href={GITHUB_LINK} class="text-gray-light hover:text-primary transition-colors" aria-label="GitHub">
+      <Icon name="carbon:logo-github" class="w-6 h-6" />
+    </a>
+    <a href={LINKEDIN_LINK} class="text-gray-light hover:text-primary transition-colors" aria-label="LinkedIn">
+      <Icon name="carbon:logo-linkedin" class="w-6 h-6" />
+    </a>
+    <a href={INSTAGRAM_LINK} class="text-gray-light hover:text-primary transition-colors" aria-label="Instagram">
+      <Icon name="carbon:logo-instagram" class="w-6 h-6" />
+    </a>
+    <a href={X_LINK} class="text-gray-light hover:text-primary transition-colors" aria-label="X">
+      <Icon name="carbon:logo-x" class="w-6 h-6" />
+    </a>
+    <!-- Vertical line -->
+    <div class="w-[2px] h-24 bg-primary/20"></div>
+  </div>
+
+  <!-- Right side: Email address -->
+  <div id="right-decoration" class="fixed right-12 bottom-0 flex flex-col items-center" style="z-index: 11;">
+    <a
+      href={`mailto:${EMAIL_ADDRESS}`}
+      class="text-gray-light hover:text-primary transition-colors text-sm uppercase tracking-widest mb-6"
+      style="writing-mode: vertical-rl; transform: rotate(0deg);"
+      aria-label="Email"
+    >
+      {EMAIL_ADDRESS}
+    </a>
+    <!-- Vertical line -->
+    <div class="w-[2px] h-24 bg-primary/20"></div>
+  </div>
+</div>
+
+<script>
+  function updateDecorationPosition() {
+    const footer = document.querySelector('footer');
+    const leftDecoration = document.getElementById('left-decoration');
+    const rightDecoration = document.getElementById('right-decoration');
+
+    if (!footer || !leftDecoration || !rightDecoration) return;
+
+    const footerRect = footer.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    // Calculate how far the footer is from the bottom of the viewport
+    const distanceFromBottom = windowHeight - footerRect.top;
+
+    if (distanceFromBottom > 0) {
+      // Footer is visible, adjust the decorations to stop at the footer
+      leftDecoration.style.bottom = `${distanceFromBottom}px`;
+      rightDecoration.style.bottom = `${distanceFromBottom}px`;
+    } else {
+      // Footer is not visible, keep decorations at bottom
+      leftDecoration.style.bottom = '0px';
+      rightDecoration.style.bottom = '0px';
+    }
+  }
+
+  // Update on scroll
+  window.addEventListener('scroll', updateDecorationPosition);
+
+  // Update on resize
+  window.addEventListener('resize', updateDecorationPosition);
+
+  // Initial update
+  updateDecorationPosition();
+</script>
