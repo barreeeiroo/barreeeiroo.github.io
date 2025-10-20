@@ -24,9 +24,15 @@ import { FIRST_NAME, LAST_NAME, ROLE } from '../config';
 </div>
 
 <!-- Scroll Indicator -->
-<div id="scroll-indicator" class="absolute bottom-16 md:bottom-32 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3" style="z-index: 1;">
-  <p class="text-xs uppercase tracking-widest text-gray-light">Scroll to explore</p>
-  <div class="w-[2px] h-12 bg-primary/30 relative overflow-hidden">
+<a
+  href="#about"
+  id="scroll-indicator"
+  class="absolute bottom-16 md:bottom-32 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 cursor-pointer group"
+  style="z-index: 1;"
+  aria-label="Scroll to About section"
+>
+  <p class="text-xs uppercase tracking-widest text-gray-light group-hover:text-primary transition-colors">Scroll to explore</p>
+  <div class="w-[2px] h-12 bg-primary/30 relative overflow-hidden group-hover:bg-primary/50 transition-colors">
     <div class="scroll-line absolute top-0 left-0 w-full h-full bg-primary"></div>
   </div>
-</div>
+</a>

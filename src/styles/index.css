@@ -1,6 +1,11 @@
 /* Scroll indicator animation */
 .scroll-line {
 	animation: scroll-down 2s ease-in-out infinite;
+	transition: animation-duration 0.3s ease;
+}
+
+#scroll-indicator:hover .scroll-line {
+	animation: scroll-down 1.2s ease-in-out infinite;
 }
 
 @keyframes scroll-down {

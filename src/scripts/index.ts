@@ -27,6 +27,35 @@ document.addEventListener('DOMContentLoaded', () => {
 		{ duration: 0.5, delay: 0.5, easing: 'ease-out' }
 	);
 
+	// Scroll indicator hover effect
+	const scrollIndicator = document.getElementById('scroll-indicator');
+	if (scrollIndicator) {
+		const scrollLine = scrollIndicator.querySelector('.scroll-line');
+
+		scrollIndicator.addEventListener('mouseenter', () => {
+			if (scrollLine) {
+				animate(
+					scrollLine,
+					{ scaleY: [1, 1.2, 1] },
+					{ duration: 0.6, easing: 'ease-in-out' }
+				);
+			}
+			animate(
+				scrollIndicator,
+				{ y: -8 },
+				{ duration: 0.3, easing: 'ease-out' }
+			);
+		});
+
+		scrollIndicator.addEventListener('mouseleave', () => {
+			animate(
+				scrollIndicator,
+				{ y: 0 },
+				{ duration: 0.3, easing: 'ease-out' }
+			);
+		});
+	}
+
 	// Particle system
 	const particlesContainer = document.getElementById('particles');
 	if (!particlesContainer) return;
