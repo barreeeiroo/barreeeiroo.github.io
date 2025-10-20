@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	let isScrolling = false;
 	let currentSection = '';
 
-	// Function to update hash
+	// Function to update hash and navbar active state
 	const updateHash = (sectionId: string) => {
 		if (currentSection !== sectionId) {
 			currentSection = sectionId;
@@ -16,6 +16,26 @@ document.addEventListener('DOMContentLoaded', () => {
 			} else {
 				history.replaceState(null, '', window.location.pathname);
 			}
+
+			// Update navbar active states
+			updateNavbarActiveState(sectionId);
+		}
+	};
+
+	// Function to update navbar active state
+	const updateNavbarActiveState = (sectionId: string) => {
+		// Remove active class from all nav links
+		const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+		navLinks.forEach(link => {
+			link.classList.remove('active');
+		});
+
+		// Add active class to current section links
+		if (sectionId) {
+			const activeLinks = document.querySelectorAll(`[data-section="${sectionId}"]`);
+			activeLinks.forEach(link => {
+				link.classList.add('active');
+			});
 		}
 	};
 
@@ -66,9 +86,14 @@ document.addEventListener('DOMContentLoaded', () => {
 			if (href && href.startsWith('#')) {
 				e.preventDefault();
 				const targetSection = document.querySelector(href);
+				const sectionId = href.substring(1);
 
 				if (targetSection) {
 					isScrolling = true;
+
+					// Update active state immediately
+					updateNavbarActiveState(sectionId);
+
 					targetSection.scrollIntoView({ behavior: 'smooth' });
 
 					// Re-enable observer after scroll completes
@@ -82,6 +107,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// Handle initial hash on page load
 	if (window.location.hash) {
+		const sectionId = window.location.hash.substring(1);
+		updateNavbarActiveState(sectionId);
 		setTimeout(() => {
 			const target = document.querySelector(window.location.hash);
 			if (target) {

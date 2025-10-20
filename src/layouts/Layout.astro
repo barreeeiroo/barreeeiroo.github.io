@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { FULL_NAME, ROLE } from '../config';
 
@@ -24,8 +25,9 @@ const pageTitle = title ? `${title} - ${FULL_NAME}` : `${FULL_NAME} - ${ROLE}`;
     <title>{pageTitle}</title>
   </head>
   <body class="bg-gradient-to-br from-navy via-black to-navy text-white overflow-x-hidden">
+    <Navbar />
     <!-- Content Wrapper -->
-    <div class="relative" style="z-index: 10;">
+    <div class="relative pt-16" style="z-index: 10;">
       <slot />
       <Footer />
     </div>
