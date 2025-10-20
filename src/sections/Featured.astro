@@ -1,0 +1,44 @@
+---
+import type { ImageMetadata } from 'astro';
+import { getCollection } from 'astro:content';
+import { Icon } from 'astro-icon/components';
+import FeaturedProject from '../components/FeaturedProject.astro';
+
+// Fetch featured projects and sort by order
+const featuredProjects = await getCollection('featured-projects');
+const sortedProjects = featuredProjects.sort((a, b) => a.data.order - b.data.order);
+
+// Import featured images
+const featuredImages = Object.entries(
+  import.meta.glob<{ default: ImageMetadata }>('../assets/featured/*.{jpeg,jpg,png,gif,webp}')
+).reduce((acc, [path, value]) => {
+  const filename = path.split('/').pop(); // Extract filename from path
+  acc[filename] = value;
+  return acc;
+}, {});
+---
+
+<!-- Featured Projects -->
+<div class="space-y-20 min-[960px]:space-y-32 mb-12 min-[960px]:mb-16">
+  {sortedProjects.map((project, index) => {
+    const imageAlign = index % 2 === 0 ? 'left' : 'right';
+    return (
+      <FeaturedProject
+        project={project}
+        imageAlign={imageAlign}
+        featuredImages={featuredImages}
+      />
+    );
+  })}
+</div>
+
+<!-- Other Projects Link -->
+<div class="text-center">
+  <a
+    href="/archive"
+    class="inline-flex items-center gap-2 px-6 min-[960px]:px-8 py-3 min-[960px]:py-4 border-2 border-primary text-primary hover:bg-primary hover:text-black transition-all uppercase text-xs min-[960px]:text-sm font-bold tracking-widest"
+  >
+    View All Projects Archive
+    <Icon name="carbon:arrow-right" class="w-4 h-4" />
+  </a>
+</div>

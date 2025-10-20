@@ -1,0 +1,91 @@
+---
+import { getCollection } from 'astro:content';
+import ExperienceEntry from '../components/ExperienceEntry.astro';
+
+// Fetch work experience and sort by order
+const workEntries = await getCollection('work');
+const sortedWork = workEntries.sort((a, b) => a.data.order - b.data.order);
+---
+
+<div class="flex flex-col md:flex-row gap-8 md:gap-12 lg:gap-16 xl:gap-24">
+  <!-- Company Tabs (Vertical) -->
+  <div class="flex md:flex-col gap-0 overflow-x-auto md:overflow-visible border-b-2 md:border-b-0 md:border-l-2 md:h-full border-primary/30">
+    {sortedWork.map((work, index) => (
+      <button
+        class="work-tab px-4 md:px-6 py-3 md:py-4 text-left text-xs md:text-sm uppercase tracking-wider whitespace-nowrap transition-all border-b-2 md:border-b-0 md:border-l-2 border-transparent hover:bg-primary/5 hover:text-primary cursor-pointer"
+        data-index={index}
+        data-company={work.data.company}
+      >
+        {work.data.company}
+      </button>
+    ))}
+  </div>
+
+  <!-- Content -->
+  <div class="flex-1">
+    {sortedWork.map((work, index) => (
+      <ExperienceEntry work={work} index={index} />
+    ))}
+  </div>
+</div>
+
+<style>
+  /* Active tab styling */
+  .work-tab.active {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    background-color: rgba(252, 163, 17, 0.05);
+  }
+</style>
+
+<script>
+  import { animate } from 'motion';
+
+  // Wait for DOM to be ready
+  document.addEventListener('DOMContentLoaded', () => {
+    // Work experience tabs
+    const tabs = document.querySelectorAll('.work-tab');
+    const contents = document.querySelectorAll('.work-content');
+
+    function showWorkContent(index: number) {
+      // Hide all content
+      contents.forEach(content => {
+        (content as HTMLElement).classList.add('hidden');
+      });
+
+      // Remove active class from all tabs
+      tabs.forEach(tab => {
+        tab.classList.remove('active');
+      });
+
+      // Show selected content
+      const selectedContent = document.querySelector(`[data-index="${index}"].work-content`) as HTMLElement;
+      if (selectedContent) {
+        selectedContent.classList.remove('hidden');
+        animate(
+          selectedContent,
+          { opacity: [0, 1], x: [-20, 0] },
+          { duration: 0.3, easing: 'ease-out' }
+        );
+      }
+
+      // Add active class to selected tab
+      const selectedTab = document.querySelector(`[data-index="${index}"].work-tab`);
+      if (selectedTab) {
+        selectedTab.classList.add('active');
+      }
+    }
+
+    // Add click listeners to tabs
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => {
+        showWorkContent(index);
+      });
+    });
+
+    // Show first tab by default
+    if (tabs.length > 0) {
+      showWorkContent(0);
+    }
+  });
+</script>

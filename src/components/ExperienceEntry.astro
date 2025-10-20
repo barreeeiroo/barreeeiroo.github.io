@@ -1,0 +1,50 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  work: CollectionEntry<'work'>;
+  index: number;
+}
+
+const { work, index } = Astro.props;
+const { Content } = await work.render();
+---
+
+<div
+  class="work-content hidden"
+  data-index={index}
+>
+  <h3 class="text-lg md:text-xl font-bold text-white mb-1">
+    {work.data.position}
+    <span class="text-primary"> @ {work.data.company}</span>
+  </h3>
+  <p class="text-xs md:text-sm text-gray-light mb-4 md:mb-6 uppercase tracking-wider">
+    {work.data.startDate} - {work.data.endDate || 'Present'}
+  </p>
+  <div class="experience-content prose prose-invert max-w-none text-gray-light text-sm md:text-base space-y-3">
+    <Content />
+  </div>
+</div>
+
+<style>
+  .experience-content :global(ul) {
+    list-style: none;
+    padding-left: 0;
+    margin-left: 0;
+  }
+
+  .experience-content :global(li) {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .experience-content :global(li::before) {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-size: 0.85rem;
+    line-height: inherit;
+  }
+</style>
