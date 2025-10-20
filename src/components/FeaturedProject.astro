@@ -15,21 +15,23 @@ const { Content } = await project.render();
 
 <div class="project-card relative">
   <!-- Mobile: Background Image Layout -->
-  <div class="min-[960px]:hidden relative overflow-hidden border-2 border-primary group">
-    <!-- Background Image -->
-    <div class="absolute inset-0">
-      <Image
-        src={featuredImages[project.data.image]()}
-        alt={project.data.title}
-        class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300"
-        quality={90}
-      />
-      <!-- Dark overlay -->
-      <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/80 to-black/90"></div>
-    </div>
+  <div class="min-[960px]:hidden relative group">
+    <div class="border-2 border-primary absolute inset-0 translate-x-2 translate-y-2 transition-transform group-hover:translate-x-1 group-hover:translate-y-1"></div>
+    <div class="relative overflow-hidden border-2 border-primary bg-black">
+      <!-- Background Image -->
+      <div class="absolute inset-0">
+        <Image
+          src={featuredImages[project.data.image]()}
+          alt={project.data.title}
+          class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300"
+          quality={90}
+        />
+        <!-- Dark overlay -->
+        <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/80 to-black/90"></div>
+      </div>
 
-    <!-- Content Overlay -->
-    <div class="relative p-6 min-h-[400px] flex flex-col justify-end">
+      <!-- Content Overlay -->
+      <div class="relative p-6 min-h-[400px] flex flex-col justify-end">
       <p class="text-xs text-primary uppercase tracking-widest mb-2">Featured Project</p>
       <h3 class="text-2xl font-bold text-white mb-4">{project.data.title}</h3>
 
@@ -65,20 +67,24 @@ const { Content } = await project.render();
           </a>
         )}
       </div>
+      </div>
     </div>
   </div>
 
   <!-- Desktop: Overlapping Layout -->
   <div class="hidden min-[960px]:flex min-[960px]:items-center">
     <!-- Project Image - 60% width -->
-    <div class={`relative group overflow-hidden border-2 border-primary w-[60%] ${imageAlign === 'left' ? '' : 'ml-auto'}`}>
-      <Image
-        src={featuredImages[project.data.image]()}
-        alt={project.data.title}
-        class="w-full aspect-video object-cover grayscale group-hover:grayscale-0 transition-all duration-300"
-        quality={90}
-      />
-      <div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-all"></div>
+    <div class={`relative group w-[60%] ${imageAlign === 'left' ? '' : 'ml-auto'}`}>
+      <div class="border-2 border-primary absolute inset-0 translate-x-3 translate-y-3 transition-transform group-hover:translate-x-1 group-hover:translate-y-1"></div>
+      <div class="relative overflow-hidden border-2 border-primary bg-black">
+        <Image
+          src={featuredImages[project.data.image]()}
+          alt={project.data.title}
+          class="w-full aspect-video object-cover grayscale group-hover:grayscale-0 transition-all duration-300"
+          quality={90}
+        />
+        <div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-all"></div>
+      </div>
     </div>
 
     <!-- Project Info - Overlapping - 50% width -->
