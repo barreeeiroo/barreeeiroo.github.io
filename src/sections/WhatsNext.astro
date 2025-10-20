@@ -9,12 +9,15 @@ import { EMAIL_ADDRESS } from '../config';
     discuss interesting projects, or chat about technology. Feel free to reach out!
   </p>
 
-<a
-  href={`mailto:${EMAIL_ADDRESS}`}
-  class="inline-flex items-center gap-3 px-8 md:px-12 py-4 md:py-5 bg-primary hover:translate-y-[-2px] shadow-sharp-primary hover:shadow-[6px_6px_0px_0px_rgba(252,163,17,0.8)] transition-all font-bold uppercase text-xs md:text-sm tracking-widest text-black"
->
-  <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-  </svg>
-  Say Hello
-</a>
+<div class="relative inline-block group">
+  <div class="border-2 border-primary absolute inset-0 translate-x-2 translate-y-2 md:translate-x-3 md:translate-y-3 transition-transform group-hover:translate-x-1 group-hover:translate-y-1"></div>
+  <a
+    href={`mailto:${EMAIL_ADDRESS}`}
+    class="relative inline-flex items-center gap-3 px-8 md:px-12 py-4 md:py-5 bg-primary transition-all font-bold uppercase text-xs md:text-sm tracking-widest text-black"
+  >
+    <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+    </svg>
+    Say Hello
+  </a>
+</div>
