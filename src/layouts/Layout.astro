@@ -1,0 +1,36 @@
+---
+import '../styles/global.css';
+import '../styles/index.css';
+import Footer from '../components/Footer.astro';
+import { FULL_NAME, ROLE } from '../config';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+
+// If title is provided, use "Title - FULL_NAME", otherwise use "FULL_NAME - ROLE" (for index)
+const pageTitle = title ? `${title} - ${FULL_NAME}` : `${FULL_NAME} - ${ROLE}`;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    {description && <meta name="description" content={description} />}
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+  </head>
+  <body class="bg-gradient-to-br from-navy via-black to-navy text-white overflow-x-hidden">
+    <!-- Content Wrapper -->
+    <div class="relative" style="z-index: 10;">
+      <slot />
+      <Footer />
+    </div>
+  </body>
+</html>
+
+<script src="../scripts/index.ts"></script>

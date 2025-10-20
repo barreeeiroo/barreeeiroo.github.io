@@ -1,0 +1,52 @@
+/* Scroll indicator animation */
+.scroll-line {
+	animation: scroll-down 2s ease-in-out infinite;
+}
+
+@keyframes scroll-down {
+	0% {
+		transform: translateY(-100%);
+	}
+	100% {
+		transform: translateY(100%);
+	}
+}
+
+/* Technologies list styling */
+.technologies-list {
+	list-style: none;
+	padding-left: 0;
+	margin-left: 0;
+}
+
+.technologies-list li {
+	position: relative;
+	padding-left: 1.5rem;
+	margin-bottom: 0.5rem;
+}
+
+.technologies-list li::before {
+	content: '▸';
+	position: absolute;
+	left: 0;
+	color: var(--color-primary);
+	font-size: 0.85rem;
+	line-height: inherit;
+}
+
+/* Particle styling */
+.particle {
+	position: absolute;
+	pointer-events: none;
+}
+
+.particle-inner {
+	width: 14px;
+	height: 14px;
+	background: var(--color-primary);
+	border-radius: 50%;
+	filter: blur(5px);
+	opacity: 0.3;
+	will-change: transform, opacity;
+	transition: transform 0.3s ease-out, opacity 0.3s ease;
+}

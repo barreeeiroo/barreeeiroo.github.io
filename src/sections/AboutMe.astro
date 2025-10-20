@@ -1,0 +1,41 @@
+---
+import { FULL_NAME } from '../config';
+import profilePhoto from '../assets/profile.jpg';
+---
+
+<div class="grid md:grid-cols-3 gap-8 md:gap-12">
+    <!-- Left: Description & Technologies -->
+    <div class="md:col-span-2 space-y-4 md:space-y-6">
+      <p class="text-gray-light leading-relaxed text-sm md:text-base">I'm a software engineer who enjoys building scalable systems and platforms that make a real impact. My journey started in 2017 when I launched Kodular as a high school side project - what began as a simple drag-and-drop app builder has since helped over 2 million people create Android apps without writing code.</p>
+      <p class="text-gray-light leading-relaxed text-sm md:text-base">These days, I'm working at Amazon in Dublin, designing distributed systems that handle massive scale. I've had the chance to work on everything from no-code platforms to university scheduling algorithms, and even spent a summer contributing to MIT App Inventor through Google Summer of Code.</p>
+      <p class="text-gray-light leading-relaxed text-sm md:text-base">I'm particularly interested in cloud architecture, developer tools, and education technology. When I'm not architecting systems or debugging production issues, you'll find me exploring new AWS services, contributing to open-source projects, or helping students get started with programming.</p>
+
+      <div>
+        <p class="text-white font-bold mb-4 mt-6 md:mt-8 text-sm md:text-base">Recent technologies I've been working with:</p>
+        <ul class="technologies-list grid grid-cols-2 gap-x-4">
+          <li class="text-xs md:text-sm text-gray-light">Java</li>
+          <li class="text-xs md:text-sm text-gray-light">Python</li>
+          <li class="text-xs md:text-sm text-gray-light">React</li>
+          <li class="text-xs md:text-sm text-gray-light">TypeScript</li>
+          <li class="text-xs md:text-sm text-gray-light">AWS</li>
+          <li class="text-xs md:text-sm text-gray-light">GCP</li>
+          <li class="text-xs md:text-sm text-gray-light">Docker</li>
+          <li class="text-xs md:text-sm text-gray-light">PostgreSQL</li>
+          <li class="text-xs md:text-sm text-gray-light">Django</li>
+          <li class="text-xs md:text-sm text-gray-light">Android</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Right: Photo -->
+    <div class="md:col-span-1">
+      <div class="relative group">
+        <div class="border-2 border-primary absolute inset-0 translate-x-4 translate-y-4 transition-transform group-hover:translate-x-2 group-hover:translate-y-2"></div>
+        <img
+          src={profilePhoto.src}
+          alt={FULL_NAME}
+          class="relative w-full aspect-square object-cover grayscale hover:grayscale-0 transition-all duration-300"
+        />
+      </div>
+    </div>
+  </div>

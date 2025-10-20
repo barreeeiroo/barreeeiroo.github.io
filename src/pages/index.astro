@@ -1,360 +1,59 @@
 ---
-import '../styles/global.css';
-import { Icon } from 'astro-icon/components';
-import Featured from '../sections/Featured.astro';
+import Layout from '../layouts/Layout.astro';
+import Hero from '../sections/Hero.astro';
+import AboutMe from '../sections/AboutMe.astro';
 import Experience from '../sections/Experience.astro';
-import profilePhoto from '../assets/profile.jpg';
-import {
-  FIRST_NAME,
-  LAST_NAME,
-  FULL_NAME,
-  ROLE,
-  EMAIL_ADDRESS,
-  GITHUB_LINK,
-  LINKEDIN_LINK
-} from '../config';
-
-const currentYear = new Date().getFullYear();
+import Featured from '../sections/Featured.astro';
+import WhatsNext from '../sections/WhatsNext.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{FULL_NAME} - {ROLE}</title>
-	</head>
-	<body class="bg-gradient-to-br from-navy via-black to-navy text-white overflow-x-hidden">
-		<!-- Content Wrapper -->
-		<div class="relative" style="z-index: 10;">
-		<!-- Hero Section -->
-		<section class="min-h-screen flex items-center justify-center px-6 md:px-6 py-20 relative overflow-hidden">
-			<!-- Background Particles -->
-			<div id="particles" class="absolute inset-0 pointer-events-none" style="z-index: 0;"></div>
-			<div class="max-w-4xl w-full relative" style="z-index: 1;">
-				<!-- Greeting Badge -->
-				<div id="greeting" class="inline-block px-3 md:px-4 py-2 mb-4 md:mb-6 bg-primary">
-					<p class="text-xs md:text-sm font-bold tracking-widest text-black uppercase">HELLO, I'M</p>
-				</div>
+<Layout>
+	<!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center px-6 md:px-6 py-20 relative overflow-hidden">
+        <Hero />
+    </section>
 
-				<!-- Name -->
-				<h1 id="name" class="text-5xl sm:text-6xl md:text-8xl font-black mb-6 md:mb-8 leading-none text-white uppercase tracking-tight">
-					{FIRST_NAME}<br/>{LAST_NAME}
-				</h1>
+    <!-- Section 01: About Me -->
+    <section id="about" class="py-16 md:py-24 px-6 md:px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-xs md:text-sm font-bold tracking-widest text-primary uppercase mb-6 md:mb-8">
+                <span class="text-xl md:text-2xl mr-2">01.</span> About Me
+            </h2>
 
-				<!-- Tagline with accent border -->
-				<div id="tagline" class="mb-12 border-l-2 md:border-l-4 border-primary pl-4 md:pl-6">
-					<p class="text-lg md:text-2xl font-light text-gray-light">
-            {ROLE}
-					</p>
-				</div>
-			</div>
+            <AboutMe />
+        </div>
+    </section>
 
-			<!-- Scroll Indicator -->
-			<div id="scroll-indicator" class="absolute bottom-16 md:bottom-32 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3" style="z-index: 1;">
-				<p class="text-xs uppercase tracking-widest text-gray-light">Scroll to explore</p>
-				<div class="w-[2px] h-12 bg-primary/30 relative overflow-hidden">
-					<div class="scroll-line absolute top-0 left-0 w-full h-full bg-primary"></div>
-				</div>
-			</div>
-		</section>
+    <!-- Section 02: Where I've Worked -->
+    <section id="experience" class="py-16 md:py-24 px-6 md:px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-xs md:text-sm font-bold tracking-widest text-primary uppercase mb-8 md:mb-12">
+                <span class="text-xl md:text-2xl mr-2">02.</span> Where I've Worked
+            </h2>
 
-		<!-- Section 01: About Me -->
-		<section id="about" class="py-16 md:py-24 px-6 md:px-6">
-			<div class="max-w-6xl mx-auto">
-				<h2 class="text-xs md:text-sm font-bold tracking-widest text-primary uppercase mb-6 md:mb-8">
-					<span class="text-xl md:text-2xl mr-2">01.</span> About Me
-				</h2>
+            <Experience />
+        </div>
+    </section>
 
-				<div class="grid md:grid-cols-3 gap-8 md:gap-12">
-					<!-- Left: Description & Technologies -->
-					<div class="md:col-span-2 space-y-4 md:space-y-6">
-						<p class="text-gray-light leading-relaxed text-sm md:text-base">I'm a software engineer who enjoys building scalable systems and platforms that make a real impact. My journey started in 2017 when I launched Kodular as a high school side project - what began as a simple drag-and-drop app builder has since helped over 2 million people create Android apps without writing code.</p>
-						<p class="text-gray-light leading-relaxed text-sm md:text-base">These days, I'm working at Amazon in Dublin, designing distributed systems that handle massive scale. I've had the chance to work on everything from no-code platforms to university scheduling algorithms, and even spent a summer contributing to MIT App Inventor through Google Summer of Code.</p>
-						<p class="text-gray-light leading-relaxed text-sm md:text-base">I'm particularly interested in cloud architecture, developer tools, and education technology. When I'm not architecting systems or debugging production issues, you'll find me exploring new AWS services, contributing to open-source projects, or helping students get started with programming.</p>
+    <!-- Section 03: Some Things I've Built -->
+    <section id="projects" class="py-16 md:py-24 px-6 md:px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-xs md:text-sm font-bold tracking-widest text-primary uppercase mb-8 md:mb-12">
+                <span class="text-xl md:text-2xl mr-2">03.</span> Some Things I've Built
+            </h2>
 
-						<div>
-							<p class="text-white font-bold mb-4 mt-6 md:mt-8 text-sm md:text-base">Recent technologies I've been working with:</p>
-							<ul class="technologies-list grid grid-cols-2 gap-x-4">
-								<li class="text-xs md:text-sm text-gray-light">Java</li>
-								<li class="text-xs md:text-sm text-gray-light">Python</li>
-								<li class="text-xs md:text-sm text-gray-light">React</li>
-								<li class="text-xs md:text-sm text-gray-light">TypeScript</li>
-								<li class="text-xs md:text-sm text-gray-light">AWS</li>
-								<li class="text-xs md:text-sm text-gray-light">GCP</li>
-								<li class="text-xs md:text-sm text-gray-light">Docker</li>
-								<li class="text-xs md:text-sm text-gray-light">PostgreSQL</li>
-								<li class="text-xs md:text-sm text-gray-light">Django</li>
-								<li class="text-xs md:text-sm text-gray-light">Android</li>
-							</ul>
-						</div>
-					</div>
+            <Featured />
+        </div>
+    </section>
 
-					<!-- Right: Photo -->
-					<div class="md:col-span-1">
-						<div class="relative group">
-							<div class="border-2 border-primary absolute inset-0 translate-x-4 translate-y-4 transition-transform group-hover:translate-x-2 group-hover:translate-y-2"></div>
-							<img
-								src={profilePhoto.src}
-								alt={FULL_NAME}
-								class="relative w-full aspect-square object-cover grayscale hover:grayscale-0 transition-all duration-300"
-							/>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
+    <!-- Section 04: What's Next? -->
+    <section id="contact" class="py-16 md:py-24 px-6 md:px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-xs md:text-sm font-bold tracking-widest text-primary uppercase mb-6 md:mb-8">
+                <span class="text-xl md:text-2xl mr-2">04.</span> What's Next?
+            </h2>
 
-		<!-- Section 02: Where I've Worked -->
-		<section id="experience" class="py-16 md:py-24 px-6 md:px-6">
-			<div class="max-w-6xl mx-auto">
-				<h2 class="text-xs md:text-sm font-bold tracking-widest text-primary uppercase mb-8 md:mb-12">
-					<span class="text-xl md:text-2xl mr-2">02.</span> Where I've Worked
-				</h2>
-
-				<Experience />
-			</div>
-		</section>
-
-		<!-- Section 03: Some Things I've Built -->
-		<section id="projects" class="py-16 md:py-24 px-6 md:px-6">
-			<div class="max-w-6xl mx-auto">
-				<h2 class="text-xs md:text-sm font-bold tracking-widest text-primary uppercase mb-8 md:mb-12">
-					<span class="text-xl md:text-2xl mr-2">03.</span> Some Things I've Built
-				</h2>
-
-				<Featured />
-			</div>
-		</section>
-
-		<!-- Section 04: What's Next? -->
-		<section id="contact" class="py-16 md:py-24 px-6 md:px-6">
-			<div class="max-w-4xl mx-auto text-center">
-				<h2 class="text-xs md:text-sm font-bold tracking-widest text-primary uppercase mb-6 md:mb-8">
-					<span class="text-xl md:text-2xl mr-2">04.</span> What's Next?
-				</h2>
-
-				<h3 class="text-3xl md:text-5xl font-black text-white mb-6 md:mb-8 uppercase">Get In Touch</h3>
-
-				<p class="text-gray-light text-sm md:text-lg leading-relaxed mb-8 md:mb-12 max-w-2xl mx-auto">
-					I'm always open to discussing new opportunities, collaborations, or just chatting about technology.
-					Whether you have a question or just want to say hi, feel free to reach out!
-				</p>
-
-				<a
-					href={`mailto:${EMAIL_ADDRESS}`}
-					class="inline-block px-8 md:px-12 py-4 md:py-5 bg-primary hover:translate-y-[-2px] shadow-sharp-primary hover:shadow-[6px_6px_0px_0px_rgba(252,163,17,0.8)] transition-all font-bold uppercase text-xs md:text-sm tracking-widest text-black"
-				>
-					Say Hello
-				</a>
-			</div>
-		</section>
-
-		<!-- Footer -->
-		<footer class="py-8 md:py-12 px-6 md:px-6 border-t-2 border-primary/20">
-			<div class="max-w-6xl mx-auto text-center">
-				<div class="flex justify-center gap-6 mb-4 md:mb-6">
-					<a href={GITHUB_LINK} class="text-gray-light hover:text-primary transition-colors" aria-label="GitHub">
-						<Icon name="carbon:logo-github" class="w-5 h-5 md:w-6 md:h-6" />
-					</a>
-					<a href={LINKEDIN_LINK} class="text-gray-light hover:text-primary transition-colors" aria-label="LinkedIn">
-						<Icon name="carbon:logo-linkedin" class="w-5 h-5 md:w-6 md:h-6" />
-					</a>
-				</div>
-				<p class="text-xs text-gray-light uppercase tracking-widest">
-					&copy; {currentYear} {FULL_NAME}. All rights reserved.
-				</p>
-			</div>
-		</footer>
-		</div>
-	</body>
-</html>
-
-<style>
-	.scroll-line {
-		animation: scroll-down 2s ease-in-out infinite;
-	}
-
-	@keyframes scroll-down {
-		0% {
-			transform: translateY(-100%);
-		}
-		100% {
-			transform: translateY(100%);
-		}
-	}
-
-	/* Technologies list styling */
-	.technologies-list {
-		list-style: none;
-		padding-left: 0;
-		margin-left: 0;
-	}
-
-	.technologies-list li {
-		position: relative;
-		padding-left: 1.5rem;
-		margin-bottom: 0.5rem;
-	}
-
-	.technologies-list li::before {
-		content: '▸';
-		position: absolute;
-		left: 0;
-		color: var(--color-primary);
-		font-size: 0.85rem;
-		line-height: inherit;
-	}
-
-	/* Particle styling - use :global to bypass Astro scoping */
-	:global(.particle) {
-		position: absolute;
-		pointer-events: none;
-	}
-
-	:global(.particle-inner) {
-		width: 14px;
-		height: 14px;
-		background: var(--color-primary);
-		border-radius: 50%;
-		filter: blur(5px);
-		opacity: 0.3;
-		will-change: transform, opacity;
-		transition: transform 0.3s ease-out, opacity 0.3s ease;
-	}
-
-</style>
-
-<script>
-	import { animate } from 'motion';
-
-	// Wait for DOM to be ready
-	document.addEventListener('DOMContentLoaded', () => {
-		// Hero animations
-		animate(
-			'#greeting',
-			{ opacity: [0, 1], y: [-20, 0] },
-			{ duration: 0.5, easing: 'ease-out' }
-		);
-
-		animate(
-			'#name',
-			{ opacity: [0, 1], y: [-30, 0] },
-			{ duration: 0.6, delay: 0.15, easing: 'ease-out' }
-		);
-
-		animate(
-			'#tagline',
-			{ opacity: [0, 1], x: [-20, 0] },
-			{ duration: 0.5, delay: 0.3, easing: 'ease-out' }
-		);
-
-		animate(
-			'#scroll-indicator',
-			{ opacity: [0, 1], y: [20, 0] },
-			{ duration: 0.5, delay: 0.5, easing: 'ease-out' }
-		);
-
-		// Particle system
-		const particlesContainer = document.getElementById('particles');
-		if (!particlesContainer) return;
-
-		const particleCount = 50;
-		const particles: Array<{ outer: HTMLElement; inner: HTMLElement; baseX: number; baseY: number }> = [];
-		const mouse = { x: -9999, y: -9999 };
-		const repelRadius = 250; // Larger radius for earlier repel
-		const maxPush = 80; // Maximum push distance
-
-		// Create particles with nested elements
-		for (let i = 0; i < particleCount; i++) {
-			const particleOuter = document.createElement('div');
-			particleOuter.className = 'particle';
-
-			const particleInner = document.createElement('div');
-			particleInner.className = 'particle-inner';
-
-			particleOuter.appendChild(particleInner);
-
-			// Keep particles within bounds with padding
-			const padding = 50;
-			const x = padding + Math.random() * (window.innerWidth - padding * 2);
-			const y = padding + Math.random() * (window.innerHeight - padding * 2);
-
-			particleOuter.style.left = `${x}px`;
-			particleOuter.style.top = `${y}px`;
-
-			particlesContainer.appendChild(particleOuter);
-
-			particles.push({
-				outer: particleOuter,
-				inner: particleInner,
-				baseX: x,
-				baseY: y
-			});
-
-			// Animate outer element with Motion - gentler movement
-			animate(
-				particleOuter,
-				{
-					x: [0, Math.random() * 40 - 20, 0],
-					y: [0, Math.random() * 40 - 20, 0]
-				},
-				{
-					duration: 10 + Math.random() * 10,
-					repeat: Infinity,
-					easing: 'ease-in-out'
-				}
-			);
-		}
-
-		// Track mouse position
-		document.addEventListener('mousemove', (e) => {
-			mouse.x = e.clientX;
-			mouse.y = e.clientY;
-		});
-
-		// Soft mouse repel effect on inner element
-		function updateParticles() {
-			const viewportWidth = window.innerWidth;
-			const viewportHeight = window.innerHeight;
-
-			particles.forEach((particle) => {
-				const rect = particle.outer.getBoundingClientRect();
-				const particleX = rect.left + rect.width / 2;
-				const particleY = rect.top + rect.height / 2;
-
-				const dx = particleX - mouse.x;
-				const dy = particleY - mouse.y;
-				const distance = Math.sqrt(dx * dx + dy * dy);
-
-				if (distance < repelRadius && distance > 0) {
-					// Softer easing function for gradual repel
-					const force = Math.pow((repelRadius - distance) / repelRadius, 2);
-					const pushDistance = force * maxPush;
-
-					const pushX = (dx / distance) * pushDistance;
-					const pushY = (dy / distance) * pushDistance;
-
-					// Clamp to prevent overflow
-					const finalX = Math.max(0, Math.min(viewportWidth, particleX + pushX));
-					const finalY = Math.max(0, Math.min(viewportHeight, particleY + pushY));
-
-					const clampedPushX = finalX - particleX;
-					const clampedPushY = finalY - particleY;
-
-					// Apply repel to inner element only
-					particle.inner.style.transform = `translate(${clampedPushX}px, ${clampedPushY}px)`;
-					particle.inner.style.opacity = `${0.3 + force * 0.3}`;
-				} else {
-					particle.inner.style.transform = 'translate(0, 0)';
-					particle.inner.style.opacity = '0.3';
-				}
-			});
-
-			requestAnimationFrame(updateParticles);
-		}
-
-		updateParticles();
-	});
-</script>
+            <WhatsNext />
+        </div>
+    </section>
+</Layout>

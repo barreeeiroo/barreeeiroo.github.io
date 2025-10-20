@@ -1,0 +1,22 @@
+---
+import { Icon } from 'astro-icon/components';
+import { FULL_NAME, GITHUB_LINK, LINKEDIN_LINK } from '../config';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="py-8 md:py-12 px-6 md:px-6 border-t-2 border-primary/20">
+  <div class="max-w-6xl mx-auto text-center">
+    <div class="flex justify-center gap-6 mb-4 md:mb-6">
+      <a href={GITHUB_LINK} class="text-gray-light hover:text-primary transition-colors" aria-label="GitHub">
+        <Icon name="carbon:logo-github" class="w-5 h-5 md:w-6 md:h-6" />
+      </a>
+      <a href={LINKEDIN_LINK} class="text-gray-light hover:text-primary transition-colors" aria-label="LinkedIn">
+        <Icon name="carbon:logo-linkedin" class="w-5 h-5 md:w-6 md:h-6" />
+      </a>
+    </div>
+    <p class="text-xs text-gray-light uppercase tracking-widest">
+      &copy; {currentYear} {FULL_NAME}. All rights reserved.
+    </p>
+  </div>
+</footer>
