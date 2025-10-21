@@ -1,5 +1,6 @@
 ---
 import { EMAIL_ADDRESS } from '../config';
+import { Icon } from 'astro-icon/components';
 ---
 
 <h3 class="text-3xl md:text-5xl font-black text-white mb-6 md:mb-8 uppercase">Get In Touch</h3>
@@ -15,9 +16,7 @@ import { EMAIL_ADDRESS } from '../config';
     href={`mailto:${EMAIL_ADDRESS}`}
     class="relative inline-flex items-center gap-3 px-8 md:px-12 py-4 md:py-5 bg-primary transition-all font-bold uppercase text-xs md:text-sm tracking-widest text-black"
   >
-    <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-    </svg>
+    <Icon name="carbon:email" class="w-4 h-4 md:w-5 md:h-5" />
     Say Hello
   </a>
 </div>

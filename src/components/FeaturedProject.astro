@@ -4,7 +4,7 @@ import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 
 interface Props {
-  project: CollectionEntry<'featured-projects'>;
+  project: CollectionEntry<'projects'>;
   imageAlign: 'left' | 'right';
   featuredImages: Record<string, () => Promise<{ default: ImageMetadata }>>;
 }

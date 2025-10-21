@@ -6,7 +6,7 @@ import { Icon } from 'astro-icon/components';
 import type { ImageMetadata } from 'astro';
 
 // Fetch featured projects and sort by order
-const featuredProjects = await getCollection('featured-projects');
+const featuredProjects = await getCollection('projects');
 const sortedProjects = featuredProjects.sort((a, b) => a.data.order - b.data.order);
 
 // Import featured images
@@ -20,7 +20,7 @@ const featuredImages = Object.entries(
 ---
 
 <Layout
-  title="Projects"
+  title="Featured Projects"
   description="A selection of my most impactful work, from drag-and-drop app development platforms to intelligent scheduling systems. Each project represents a unique challenge and solution."
 >
   <!-- Projects Hero Section -->

@@ -23,7 +23,21 @@ const featuredProjectsCollection = defineCollection({
   }),
 });
 
+const archiveCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    date: z.string(),
+    title: z.string(),
+    github: z.string().optional(),
+    external: z.string().optional(),
+    mobile: z.string().optional(),
+    company: z.string(),
+    tech: z.array(z.string()),
+  }),
+});
+
 export const collections = {
   work: workCollection,
-  'featured-projects': featuredProjectsCollection,
+  projects: featuredProjectsCollection,
+  archive: archiveCollection,
 };

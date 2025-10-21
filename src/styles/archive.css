@@ -1,0 +1,101 @@
+/* Animation initial states */
+thead tr,
+.tech-row {
+  opacity: 0;
+}
+
+/* Tech stack inline expansion */
+.tech-cell {
+  max-width: 320px;
+}
+
+.tech-stack-container {
+  width: 100%;
+}
+
+.tech-stack-container > div {
+  width: 100%;
+}
+
+.tech-tag {
+  display: inline-flex;
+  white-space: nowrap;
+}
+
+.hidden-tech {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  border-width: 0;
+  transition: opacity 0.2s ease, max-height 0.2s ease, padding 0.2s ease, margin 0.2s ease, border-width 0.2s ease;
+}
+
+/* Show all tech items on hover or when expanded */
+.tech-row:hover .hidden-tech,
+.tech-row:focus-within .hidden-tech,
+.tech-row.expanded .hidden-tech {
+  max-height: 100px;
+  opacity: 1;
+  padding: 0.25rem 0.5rem;
+  margin: 0;
+  border-width: 1px;
+}
+
+.tech-more-btn {
+  transition: opacity 0.15s ease, max-height 0.15s ease, padding 0.15s ease, margin 0.15s ease;
+  display: inline-flex;
+}
+
+/* Hide the +X button when expanded */
+.tech-row:hover .tech-more-btn,
+.tech-row:focus-within .tech-more-btn,
+.tech-row.expanded .tech-more-btn {
+  opacity: 0;
+  max-height: 0;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+/* Project description expansion */
+.tech-row:hover + .description-row .description-content,
+.tech-row:focus-within + .description-row .description-content,
+.tech-row.show-description + .description-row .description-content,
+.description-row:hover .description-content {
+  max-height: 500px;
+  opacity: 1;
+}
+
+.tech-row:hover + .description-row,
+.tech-row.show-description + .description-row {
+  border-left-color: var(--color-primary);
+}
+
+.description-content {
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+
+.description-row {
+  transition: border-left-color 0.5s ease;
+}
+
+/* Style markdown content in description */
+.description-content p {
+  margin-bottom: 0.5rem;
+}
+
+.description-content p:last-child {
+  margin-bottom: 0;
+}
+
+.description-content a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.description-content a:hover {
+  color: var(--color-white);
+}

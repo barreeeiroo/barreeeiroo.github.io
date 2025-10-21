@@ -1,5 +1,6 @@
 ---
 import { FIRST_NAME } from '../config';
+import { Icon } from 'astro-icon/components';
 
 interface Props {
   isHomePage: boolean;
@@ -47,16 +48,12 @@ const { isHomePage } = Astro.props;
                     class="md:hidden text-white p-2 hover:text-primary transition-colors"
                     aria-label="Toggle menu"
                 >
-                    <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                    <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
+                    <Icon id="menu-icon" name="carbon:menu" class="w-6 h-6" />
+                    <Icon id="close-icon" name="carbon:close" class="w-6 h-6 hidden" />
                 </button>
             )}
             {!isHomePage && (
-                <a href="/" class="md:hidden text-primary text-sm uppercase tracking-wider font-bold">
+                <a href="/" class="md:hidden text-gray-light hover:text-primary transition-colors text-sm uppercase tracking-wider font-bold">
                     <span class="text-primary">00.</span> Home
                 </a>
             )}

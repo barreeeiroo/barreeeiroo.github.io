@@ -1,0 +1,125 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { Icon } from 'astro-icon/components';
+import '../../styles/archive.css';
+
+// Fetch all archive projects and sort by date (descending)
+const archiveProjects = await getCollection('archive');
+const sortedProjects = archiveProjects.sort((a, b) => {
+  // Sort by date in descending order (newest first)
+  return b.data.date.localeCompare(a.data.date);
+});
+
+// Render content for all projects
+const projectsWithContent = await Promise.all(
+  sortedProjects.map(async (project) => {
+    const { Content } = await project.render();
+    return { ...project, Content };
+  })
+);
+---
+
+<Layout
+  title="All Projects"
+  description="A big list of all my projects throughout the years, from mobile apps to web platforms."
+>
+  <!-- Archive Hero Section -->
+  <section class="py-16 md:py-24 px-6 md:px-6">
+    <div class="max-w-7xl mx-auto">
+      <p class="archive-label text-xs md:text-sm font-bold tracking-widest text-primary uppercase mb-4">
+        Complete Collection
+      </p>
+      <h1 class="archive-heading text-4xl md:text-6xl font-black text-white uppercase tracking-tight mb-6">
+        Project Archive
+      </h1>
+      <div class="archive-description border-l-2 md:border-l-4 border-primary pl-4 md:pl-6 mb-16 md:mb-24">
+        <p class="text-lg md:text-xl text-gray-light max-w-3xl">
+          A big list of (most of the) projects I've either created or closely collaborated on, from mobile apps to web platforms and open source tools. {sortedProjects.length} projects and counting...
+        </p>
+      </div>
+
+      <!-- Archive Table -->
+      <div class="archive-table-container">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left">
+            <thead>
+              <tr class="border-b-2 border-primary">
+                <th class="py-4 px-4 text-xs uppercase tracking-widest text-primary font-bold w-20">Year</th>
+                <th class="py-4 px-4 text-xs uppercase tracking-widest text-primary font-bold">Project</th>
+                <th class="py-4 px-4 text-xs uppercase tracking-widest text-primary font-bold hidden lg:table-cell">Created At</th>
+                <th class="py-4 px-4 text-xs uppercase tracking-widest text-primary font-bold hidden md:table-cell">Tech Stack</th>
+                <th class="py-4 px-4 text-xs uppercase tracking-widest text-primary font-bold w-32">Links</th>
+              </tr>
+            </thead>
+            <tbody>
+              {projectsWithContent.map((project, index) => {
+                const year = project.data.date.split('-')[0];
+                return (
+                  <>
+                    <tr class={`tech-row group border-b border-navy border-l-4 border-l-transparent hover:border-l-primary transition-all hover:bg-navy/30 ${index % 2 === 0 ? 'bg-navy/10' : ''}`} tabindex="0">
+                    <td class="py-4 px-4 text-sm text-gray-light font-mono w-20">{year}</td>
+                    <td class="py-4 px-4 text-white font-semibold group-hover:text-primary transition-colors">{project.data.title}</td>
+                    <td class="py-4 px-4 text-sm text-gray-light hidden lg:table-cell">{project.data.company}</td>
+                    <td class="py-4 px-4 text-xs tech-cell w-80 hidden md:table-cell">
+                      <div class="tech-stack-container">
+                        <div class="flex flex-wrap gap-2">
+                          {project.data.tech.map((tech, techIndex) => (
+                            <span
+                              class={`tech-tag px-2 py-1 bg-black border border-primary text-primary font-mono ${techIndex >= 3 ? 'hidden-tech' : ''}`}
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                          {project.data.tech.length > 3 && (
+                            <button
+                              class="tech-more-btn px-2 py-1 text-gray-light hover:text-primary transition-colors cursor-pointer font-mono"
+                              aria-label={`Show all ${project.data.tech.length} technologies`}
+                            >
+                              +{project.data.tech.length - 3}
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    </td>
+                  <td class="py-4 px-4 w-32">
+                    <div class="flex gap-3 text-gray-light">
+                      {project.data.github && (
+                        <a href={project.data.github} class="hover:text-primary transition-colors" title="GitHub" target="_blank" rel="noopener">
+                          <Icon name="carbon:logo-github" class="w-5 h-5" />
+                        </a>
+                      )}
+                      {project.data.external && (
+                        <a href={project.data.external} class="hover:text-primary transition-colors" title="External Link" target="_blank" rel="noopener">
+                          <Icon name="carbon:launch" class="w-5 h-5" />
+                        </a>
+                      )}
+                      {project.data.mobile && (
+                        <a href={project.data.mobile} class="hover:text-primary transition-colors" title="Mobile App" target="_blank" rel="noopener">
+                          <Icon name="carbon:application-mobile" class="w-5 h-5" />
+                        </a>
+                      )}
+                    </div>
+                  </td>
+                    </tr>
+                    <tr class={`description-row border-b border-navy border-l-4 border-l-transparent ${index % 2 === 0 ? 'bg-navy/10' : ''}`}>
+                      <td colspan="5" class="p-0">
+                        <div class="description-content overflow-hidden max-h-0 opacity-0">
+                          <div class="px-6 py-4 bg-navy/20 text-gray-light text-sm">
+                            <project.Content />
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script src="../../scripts/archive.ts"></script>
