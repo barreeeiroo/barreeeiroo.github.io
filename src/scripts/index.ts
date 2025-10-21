@@ -1,7 +1,7 @@
 import './index-scroll-animations';
 import './index-scroll-spy';
 
-import { animate } from 'motion';
+import { accessibleAnimate, getAnimationDelay, prefersReducedMotion } from '../utils/motion';
 
 // Helper function to check if element is in viewport
 function isElementInViewport(element: Element): boolean {
@@ -20,28 +20,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	if (isHeroVisible) {
 		// Hero animations
-		animate(
+		accessibleAnimate(
 			'#greeting',
 			{ opacity: [0, 1], y: [-20, 0] },
 			{ duration: 0.5, easing: 'ease-out' }
 		);
 
-		animate(
+		accessibleAnimate(
 			'#name',
 			{ opacity: [0, 1], y: [-30, 0] },
-			{ duration: 0.6, delay: 0.15, easing: 'ease-out' }
+			{ duration: 0.6, delay: getAnimationDelay(0.15), easing: 'ease-out' }
 		);
 
-		animate(
+		accessibleAnimate(
 			'#tagline',
 			{ opacity: [0, 1], x: [-20, 0] },
-			{ duration: 0.5, delay: 0.3, easing: 'ease-out' }
+			{ duration: 0.5, delay: getAnimationDelay(0.3), easing: 'ease-out' }
 		);
 
-		animate(
+		accessibleAnimate(
 			'#scroll-indicator',
 			{ opacity: [0, 1], y: [20, 0] },
-			{ duration: 0.5, delay: 0.5, easing: 'ease-out' }
+			{ duration: 0.5, delay: getAnimationDelay(0.5), easing: 'ease-out' }
 		);
 	} else {
 		// If hero is not visible, make elements visible immediately
@@ -59,13 +59,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		scrollIndicator.addEventListener('mouseenter', () => {
 			if (scrollLine) {
-				animate(
+				accessibleAnimate(
 					scrollLine,
 					{ scaleY: [1, 1.2, 1] },
 					{ duration: 0.6, easing: 'ease-in-out' }
 				);
 			}
-			animate(
+			accessibleAnimate(
 				scrollIndicator,
 				{ y: -8 },
 				{ duration: 0.3, easing: 'ease-out' }
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 
 		scrollIndicator.addEventListener('mouseleave', () => {
-			animate(
+			accessibleAnimate(
 				scrollIndicator,
 				{ y: 0 },
 				{ duration: 0.3, easing: 'ease-out' }
@@ -81,9 +81,14 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	}
 
-	// Particle system
+	// Particle system - skip if user prefers reduced motion
 	const particlesContainer = document.getElementById('particles');
 	if (!particlesContainer) return;
+
+	// Don't run particle system if user prefers reduced motion
+	if (prefersReducedMotion()) {
+		return;
+	}
 
 	const particleCount = 50;
 	const particles: Array<{ outer: HTMLElement; inner: HTMLElement; baseX: number; baseY: number }> = [];
@@ -119,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 
 		// Animate outer element with Motion - gentler movement
-		animate(
+		accessibleAnimate(
 			particleOuter,
 			{
 				x: [0, Math.random() * 40 - 20, 0],

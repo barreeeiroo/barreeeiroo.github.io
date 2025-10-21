@@ -7,16 +7,16 @@ import { EMAIL_ADDRESS, GITHUB_LINK, LINKEDIN_LINK, INSTAGRAM_LINK, X_LINK } fro
 <div class="hidden md:block">
   <!-- Left side: Social media icons -->
   <div id="left-decoration" class="fixed left-12 bottom-0 flex flex-col items-center gap-6" style="z-index: 11;">
-    <a href={GITHUB_LINK} class="text-gray-light hover:text-primary hover:scale-110 hover:-translate-y-1 transition-all duration-300" aria-label="GitHub">
+    <a href={GITHUB_LINK} class="text-gray-light hover:text-primary hover:scale-110 hover:-translate-y-1 transition-all duration-300" aria-label="Visit my GitHub profile">
       <Icon name="carbon:logo-github" class="w-6 h-6" />
     </a>
-    <a href={LINKEDIN_LINK} class="text-gray-light hover:text-primary hover:scale-110 hover:-translate-y-1 transition-all duration-300" aria-label="LinkedIn">
+    <a href={LINKEDIN_LINK} class="text-gray-light hover:text-primary hover:scale-110 hover:-translate-y-1 transition-all duration-300" aria-label="Connect on LinkedIn">
       <Icon name="carbon:logo-linkedin" class="w-6 h-6" />
     </a>
-    <a href={INSTAGRAM_LINK} class="text-gray-light hover:text-primary hover:scale-110 hover:-translate-y-1 transition-all duration-300" aria-label="Instagram">
+    <a href={INSTAGRAM_LINK} class="text-gray-light hover:text-primary hover:scale-110 hover:-translate-y-1 transition-all duration-300" aria-label="Follow on Instagram">
       <Icon name="carbon:logo-instagram" class="w-6 h-6" />
     </a>
-    <a href={X_LINK} class="text-gray-light hover:text-primary hover:scale-110 hover:-translate-y-1 transition-all duration-300" aria-label="X">
+    <a href={X_LINK} class="text-gray-light hover:text-primary hover:scale-110 hover:-translate-y-1 transition-all duration-300" aria-label="Follow on X (Twitter)">
       <Icon name="carbon:logo-x" class="w-6 h-6" />
     </a>
     <!-- Vertical line -->
@@ -29,7 +29,7 @@ import { EMAIL_ADDRESS, GITHUB_LINK, LINKEDIN_LINK, INSTAGRAM_LINK, X_LINK } fro
       href={`mailto:${EMAIL_ADDRESS}`}
       class="text-gray-light hover:text-primary hover:scale-110 hover:-translate-y-1 transition-all duration-300 text-sm uppercase tracking-widest mb-6"
       style="writing-mode: vertical-rl; transform: rotate(0deg);"
-      aria-label="Email"
+      aria-label="Send me an email"
     >
       {EMAIL_ADDRESS}
     </a>
@@ -39,20 +39,20 @@ import { EMAIL_ADDRESS, GITHUB_LINK, LINKEDIN_LINK, INSTAGRAM_LINK, X_LINK } fro
 </div>
 
 <script>
-  import { animate } from 'motion';
+  import { accessibleAnimate, getAnimationDelay } from '../utils/motion';
 
   document.addEventListener('DOMContentLoaded', () => {
     // Animate side decorations on page load
-    animate(
+    accessibleAnimate(
       '#left-decoration',
       { opacity: [0, 1], x: [-40, 0] },
-      { duration: 0.6, delay: 0.3, easing: 'ease-out' }
+      { duration: 0.6, delay: getAnimationDelay(0.3), easing: 'ease-out' }
     );
 
-    animate(
+    accessibleAnimate(
       '#right-decoration',
       { opacity: [0, 1], x: [40, 0] },
-      { duration: 0.6, delay: 0.4, easing: 'ease-out' }
+      { duration: 0.6, delay: getAnimationDelay(0.4), easing: 'ease-out' }
     );
 
     function updateDecorationPosition() {

@@ -61,7 +61,7 @@ const slug = project.id.replace('.md', '');
             <a
               href={project.data.githubUrl}
               class="project-link text-gray-light hover:text-primary transition-colors"
-              aria-label="GitHub"
+              aria-label={`View ${project.data.title} on GitHub`}
             >
               <Icon name="carbon:logo-github" class="w-5 h-5" />
             </a>
@@ -70,7 +70,7 @@ const slug = project.id.replace('.md', '');
             <a
               href={project.data.externalUrl}
               class="project-link text-gray-light hover:text-primary transition-colors"
-              aria-label="External Link"
+              aria-label={`Visit ${project.data.title} website`}
             >
               <Icon name="carbon:launch" class="w-5 h-5" />
             </a>
@@ -133,7 +133,7 @@ const slug = project.id.replace('.md', '');
             <a
               href={project.data.githubUrl}
               class="project-link text-gray-light hover:text-primary transition-colors"
-              aria-label="GitHub"
+              aria-label={`View ${project.data.title} on GitHub`}
             >
               <Icon name="carbon:logo-github" class="w-5 h-5" />
             </a>
@@ -142,7 +142,7 @@ const slug = project.id.replace('.md', '');
             <a
               href={project.data.externalUrl}
               class="project-link text-gray-light hover:text-primary transition-colors"
-              aria-label="External Link"
+              aria-label={`Visit ${project.data.title} website`}
             >
               <Icon name="carbon:launch" class="w-5 h-5" />
             </a>

@@ -46,7 +46,9 @@ const { isHomePage } = Astro.props;
                 <button
                     id="mobile-menu-button"
                     class="md:hidden text-white p-2 hover:text-primary transition-colors"
-                    aria-label="Toggle menu"
+                    aria-label="Toggle navigation menu"
+                    aria-expanded="false"
+                    aria-controls="mobile-menu"
                 >
                     <Icon id="menu-icon" name="carbon:menu" class="w-6 h-6" />
                     <Icon id="close-icon" name="carbon:close" class="w-6 h-6 hidden" />
@@ -61,7 +63,7 @@ const { isHomePage } = Astro.props;
 
         <!-- Mobile Navigation -->
         {isHomePage && (
-            <div id="mobile-menu" class="mobile-menu md:hidden">
+            <nav id="mobile-menu" class="mobile-menu md:hidden" aria-hidden="true">
                 <div class="mobile-menu-content flex flex-col gap-4">
                     <a href="#about" class="mobile-nav-link" data-section="about">
                         <span class="text-primary">01.</span> About
@@ -76,7 +78,7 @@ const { isHomePage } = Astro.props;
                         <span class="text-primary">04.</span> Contact
                     </a>
                 </div>
-            </div>
+            </nav>
         )}
     </div>
 </nav>
@@ -201,29 +203,29 @@ const { isHomePage } = Astro.props;
 </style>
 
 <script>
-    import { animate } from 'motion';
+    import { accessibleAnimate, getAnimationDelay } from '../utils/motion';
 
     // Navbar animations
-    animate(
+    accessibleAnimate(
         '#navbar',
         { opacity: [0, 1], y: [-40, 0] },
         { duration: 0.6, easing: 'ease-out' }
     );
 
     // Navbar logo
-    animate(
+    accessibleAnimate(
         '#nav-logo',
         { opacity: [0, 1], y: [-10, 0] },
-        { duration: 0.4, delay: 0.15, easing: 'ease-out' }
+        { duration: 0.4, delay: getAnimationDelay(0.15), easing: 'ease-out' }
     );
 
     // Navbar items with stagger
     const navItems = document.querySelectorAll('.nav-item');
     navItems.forEach((item, index) => {
-        animate(
+        accessibleAnimate(
             item,
             { opacity: [0, 1], y: [-10, 0] },
-            { duration: 0.4, delay: 0.2 + (index * 0.1), easing: 'ease-out' }
+            { duration: 0.4, delay: getAnimationDelay(0.2 + (index * 0.1)), easing: 'ease-out' }
         );
     });
 
@@ -234,13 +236,18 @@ const { isHomePage } = Astro.props;
     const closeIcon = document.getElementById('close-icon');
 
     if (menuButton && mobileMenu && menuIcon && closeIcon) {
+        // Store the first focusable element in the menu
+        const firstMenuLink = mobileMenu.querySelector('.mobile-nav-link') as HTMLElement;
+
         // Function to toggle menu with animations
         const toggleMenu = (shouldOpen: boolean) => {
             if (shouldOpen) {
                 // Opening: animate menu icon out, then close icon in
                 mobileMenu.classList.add('open');
+                menuButton.setAttribute('aria-expanded', 'true');
+                mobileMenu.setAttribute('aria-hidden', 'false');
 
-                animate(
+                accessibleAnimate(
                     menuIcon,
                     { opacity: [1, 0], rotate: [0, 90], scale: [1, 0.8] },
                     { duration: 0.2, easing: 'ease-in' }
@@ -248,17 +255,24 @@ const { isHomePage } = Astro.props;
                     menuIcon.classList.add('hidden');
                     closeIcon.classList.remove('hidden');
 
-                    animate(
+                    accessibleAnimate(
                         closeIcon,
                         { opacity: [0, 1], rotate: [-90, 0], scale: [0.8, 1] },
                         { duration: 0.2, easing: 'ease-out' }
                     );
+
+                    // Focus first menu item after opening
+                    if (firstMenuLink) {
+                        firstMenuLink.focus();
+                    }
                 });
             } else {
                 // Closing: animate close icon out, then menu icon in
                 mobileMenu.classList.remove('open');
+                menuButton.setAttribute('aria-expanded', 'false');
+                mobileMenu.setAttribute('aria-hidden', 'true');
 
-                animate(
+                accessibleAnimate(
                     closeIcon,
                     { opacity: [1, 0], rotate: [0, 90], scale: [1, 0.8] },
                     { duration: 0.2, easing: 'ease-in' }
@@ -266,12 +280,15 @@ const { isHomePage } = Astro.props;
                     closeIcon.classList.add('hidden');
                     menuIcon.classList.remove('hidden');
 
-                    animate(
+                    accessibleAnimate(
                         menuIcon,
                         { opacity: [0, 1], rotate: [-90, 0], scale: [0.8, 1] },
                         { duration: 0.2, easing: 'ease-out' }
                     );
                 });
+
+                // Return focus to menu button
+                menuButton.focus();
             }
         };
 
@@ -286,6 +303,60 @@ const { isHomePage } = Astro.props;
             link.addEventListener('click', () => {
                 toggleMenu(false);
             });
+        });
+
+        // Close menu with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+                toggleMenu(false);
+            }
+        });
+
+        // Trap focus within mobile menu when open
+        mobileMenu.addEventListener('keydown', (e) => {
+            if (!mobileMenu.classList.contains('open')) return;
+
+            const focusableElements = mobileMenu.querySelectorAll('a[href]');
+            const firstElement = focusableElements[0] as HTMLElement;
+            const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+
+            // Tab key navigation
+            if (e.key === 'Tab') {
+                if (e.shiftKey) {
+                    // Shift+Tab: moving backwards
+                    if (document.activeElement === firstElement) {
+                        e.preventDefault();
+                        menuButton.focus();
+                    }
+                } else {
+                    // Tab: moving forwards
+                    if (document.activeElement === lastElement) {
+                        e.preventDefault();
+                        menuButton.focus();
+                    }
+                }
+            }
+        });
+
+        // Also handle Tab from button when menu is open
+        menuButton.addEventListener('keydown', (e) => {
+            if (!mobileMenu.classList.contains('open')) return;
+
+            const focusableElements = mobileMenu.querySelectorAll('a[href]');
+            const firstElement = focusableElements[0] as HTMLElement;
+            const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+
+            if (e.key === 'Tab') {
+                if (e.shiftKey) {
+                    // Shift+Tab from button: go to last menu item
+                    e.preventDefault();
+                    lastElement.focus();
+                } else {
+                    // Tab from button: go to first menu item
+                    e.preventDefault();
+                    firstElement.focus();
+                }
+            }
         });
     }
 </script>

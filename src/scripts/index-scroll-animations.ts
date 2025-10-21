@@ -1,4 +1,4 @@
-import { animate } from 'motion';
+import { accessibleAnimate, getAnimationDelay } from '../utils/motion';
 
 // Wait for DOM to be ready
 document.addEventListener('DOMContentLoaded', () => {
@@ -30,7 +30,7 @@ function animateSection(section: HTMLElement) {
 	// Animate section heading
 	const heading = section.querySelector('.section-heading');
 	if (heading) {
-		animate(
+		accessibleAnimate(
 			heading,
 			{ opacity: [0, 1], y: [-20, 0] },
 			{ duration: 0.6, easing: 'ease-out' }
@@ -40,10 +40,10 @@ function animateSection(section: HTMLElement) {
 	// Animate section content
 	const content = section.querySelector('.section-content');
 	if (content) {
-		animate(
+		accessibleAnimate(
 			content,
 			{ opacity: [0, 1], y: [20, 0] },
-			{ duration: 0.6, delay: 0.2, easing: 'ease-out' }
+			{ duration: 0.6, delay: getAnimationDelay(0.2), easing: 'ease-out' }
 		);
 	}
 
@@ -70,30 +70,30 @@ function animateAboutSection(section: HTMLElement) {
 	// Animate paragraphs with stagger
 	const paragraphs = section.querySelectorAll('p');
 	paragraphs.forEach((p, index) => {
-		animate(
+		accessibleAnimate(
 			p,
 			{ opacity: [0, 1], x: [-20, 0] },
-			{ duration: 0.5, delay: 0.3 + index * 0.1, easing: 'ease-out' }
+			{ duration: 0.5, delay: getAnimationDelay(0.3 + index * 0.1), easing: 'ease-out' }
 		);
 	});
 
 	// Animate technologies list items
 	const techItems = section.querySelectorAll('.technologies-list li');
 	techItems.forEach((item, index) => {
-		animate(
+		accessibleAnimate(
 			item,
 			{ opacity: [0, 1], x: [-15, 0] },
-			{ duration: 0.4, delay: 0.6 + index * 0.05, easing: 'ease-out' }
+			{ duration: 0.4, delay: getAnimationDelay(0.6 + index * 0.05), easing: 'ease-out' }
 		);
 	});
 
 	// Animate profile photo
 	const photoContainer = section.querySelector('.group');
 	if (photoContainer) {
-		animate(
+		accessibleAnimate(
 			photoContainer,
 			{ opacity: [0, 1], scale: [0.95, 1] },
-			{ duration: 0.6, delay: 0.4, easing: 'ease-out' }
+			{ duration: 0.6, delay: getAnimationDelay(0.4), easing: 'ease-out' }
 		);
 	}
 }
@@ -102,10 +102,10 @@ function animateExperienceSection(section: HTMLElement) {
 	// Animate work tabs
 	const tabs = section.querySelectorAll('.work-tab');
 	tabs.forEach((tab, index) => {
-		animate(
+		accessibleAnimate(
 			tab,
 			{ opacity: [0, 1], x: [-20, 0] },
-			{ duration: 0.4, delay: 0.3 + index * 0.08, easing: 'ease-out' }
+			{ duration: 0.4, delay: getAnimationDelay(0.3 + index * 0.08), easing: 'ease-out' }
 		);
 	});
 
@@ -113,10 +113,10 @@ function animateExperienceSection(section: HTMLElement) {
 	// But we'll animate the first one here
 	const firstContent = section.querySelector('.work-content[data-index="0"]');
 	if (firstContent) {
-		animate(
+		accessibleAnimate(
 			firstContent,
 			{ opacity: [0, 1], x: [20, 0] },
-			{ duration: 0.5, delay: 0.5, easing: 'ease-out' }
+			{ duration: 0.5, delay: getAnimationDelay(0.5), easing: 'ease-out' }
 		);
 	}
 }
@@ -125,10 +125,10 @@ function animateProjectsSection(section: HTMLElement) {
 	// Animate featured project cards
 	const projects = section.querySelectorAll('.featured-project');
 	projects.forEach((project, index) => {
-		animate(
+		accessibleAnimate(
 			project,
 			{ opacity: [0, 1], y: [30, 0] },
-			{ duration: 0.6, delay: 0.3 + (index * 0.2), easing: 'ease-out' }
+			{ duration: 0.6, delay: getAnimationDelay(0.3 + (index * 0.2)), easing: 'ease-out' }
 		);
 	});
 
@@ -141,10 +141,10 @@ function animateProjectsSection(section: HTMLElement) {
 
 		if (viewAllButton) {
 			const delay = 0.3 + (projects.length * 0.2);
-			animate(
+			accessibleAnimate(
 				viewAllButton,
 				{ opacity: [0, 1], y: [20, 0] },
-				{ duration: 0.5, delay, easing: 'ease-out' }
+				{ duration: 0.5, delay: getAnimationDelay(delay), easing: 'ease-out' }
 			);
 		}
 	}
@@ -154,30 +154,30 @@ function animateContactSection(section: HTMLElement) {
 	// Animate heading
 	const heading = section.querySelector('h3');
 	if (heading) {
-		animate(
+		accessibleAnimate(
 			heading,
 			{ opacity: [0, 1], y: [-20, 0] },
-			{ duration: 0.6, delay: 0.3, easing: 'ease-out' }
+			{ duration: 0.6, delay: getAnimationDelay(0.3), easing: 'ease-out' }
 		);
 	}
 
 	// Animate paragraph
 	const paragraph = section.querySelector('p');
 	if (paragraph) {
-		animate(
+		accessibleAnimate(
 			paragraph,
 			{ opacity: [0, 1], y: [20, 0] },
-			{ duration: 0.5, delay: 0.5, easing: 'ease-out' }
+			{ duration: 0.5, delay: getAnimationDelay(0.5), easing: 'ease-out' }
 		);
 	}
 
 	// Animate button
 	const button = section.querySelector('.group');
 	if (button) {
-		animate(
+		accessibleAnimate(
 			button,
 			{ opacity: [0, 1], scale: [0.95, 1] },
-			{ duration: 0.5, delay: 0.7, easing: 'ease-out' }
+			{ duration: 0.5, delay: getAnimationDelay(0.7), easing: 'ease-out' }
 		);
 	}
 }

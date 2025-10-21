@@ -67,6 +67,39 @@
   select {
     border-radius: 0;
   }
+
+  /* Visible focus indicators for accessibility */
+  *:focus {
+    outline: none;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 4px;
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 4px;
+    box-shadow: 0 0 0 4px rgba(252, 163, 17, 0.2);
+  }
+
+  /* Respect user's motion preferences - WCAG 2.1 Level A */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+
+    html {
+      scroll-behavior: auto !important;
+    }
+  }
 }
 
 /* Utility classes for the design system */
