@@ -3,7 +3,8 @@ import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import SideDecoration from '../components/SideDecoration.astro';
-import { FULL_NAME, ROLE } from '../config';
+import { FULL_NAME, ROLE, EMAIL_ADDRESS, GITHUB_LINK, LINKEDIN_LINK, X_LINK } from '../config';
+import profilePhoto from '../assets/profile.jpg';
 
 interface Props {
   title?: string;
@@ -15,6 +16,39 @@ const { title, description } = Astro.props;
 // If title is provided, use "Title - FULL_NAME", otherwise use "FULL_NAME - ROLE" (for index)
 const pageTitle = title ? `${title} - ${FULL_NAME}` : `${FULL_NAME} - ${ROLE}`;
 const isHomePage = !title;
+
+// Canonical URL
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// Use profile photo for OG image
+const ogImage = new URL(profilePhoto.src, Astro.site).toString();
+
+// JSON-LD Structured Data
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": FULL_NAME,
+  "url": Astro.site,
+  "image": ogImage,
+  "jobTitle": ROLE,
+  "email": `mailto:${EMAIL_ADDRESS}`,
+  "sameAs": [
+    GITHUB_LINK,
+    LINKEDIN_LINK,
+    X_LINK
+  ]
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": `${FULL_NAME} - Portfolio`,
+  "url": Astro.site,
+  "author": {
+    "@type": "Person",
+    "name": FULL_NAME
+  }
+};
 ---
 
 <html lang="en">
@@ -22,9 +56,34 @@ const isHomePage = !title;
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
-    {description && <meta name="description" content={description} />}
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
     <title>{pageTitle}</title>
+    {description && <meta name="description" content={description} />}
+    <meta name="author" content={FULL_NAME} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={pageTitle} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:image" content={ogImage} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={pageTitle} />
+    {description && <meta property="twitter:description" content={description} />}
+    <meta property="twitter:image" content={ogImage} />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#fca311" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
   </head>
   <body class="bg-gradient-to-br from-navy via-black to-navy text-white overflow-x-hidden">
     <Navbar isHomePage={isHomePage} />
