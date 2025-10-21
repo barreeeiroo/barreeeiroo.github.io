@@ -5,7 +5,6 @@ github: 'https://github.com/barreeeiroo/Home-Assistant-Electric-Ireland/'
 company: '-'
 tech:
   - Python
-  - Clingo
 ---
 
 Simple Home Assistant integration with Electric Ireland insights.

@@ -7,9 +7,10 @@ interface Props {
   project: CollectionEntry<'projects'>;
   imageAlign: 'left' | 'right';
   featuredImages: Record<string, () => Promise<{ default: ImageMetadata }>>;
+  displayFeaturedLabel?: boolean;
 }
 
-const { project, imageAlign, featuredImages } = Astro.props;
+const { project, imageAlign, featuredImages, displayFeaturedLabel = true } = Astro.props;
 const { Content } = await project.render();
 const slug = project.id.replace('.md', '');
 ---
@@ -33,7 +34,9 @@ const slug = project.id.replace('.md', '');
 
       <!-- Content Overlay -->
       <div class="relative p-6 min-h-[400px] flex flex-col justify-end project-content">
-      <p class="text-xs text-primary uppercase tracking-widest mb-2 project-label">Featured Project</p>
+      {displayFeaturedLabel && (
+        <p class="text-xs text-primary uppercase tracking-widest mb-2 project-label">Featured Project</p>
+      )}
       <h3 class="text-2xl font-bold text-white mb-4 project-title">
         <a href={`/projects/${slug}`} class="hover:text-primary transition-colors">
           {project.data.title}
@@ -105,7 +108,9 @@ const slug = project.id.replace('.md', '');
     <!-- Project Info - Overlapping - 50% width -->
     <div class={`project-content absolute top-1/2 -translate-y-1/2 w-[50%] ${imageAlign === 'left' ? 'right-0 pr-4' : 'left-0 pl-4'}`}>
       <div class={`${imageAlign === 'left' ? 'text-right' : 'text-left'}`}>
-        <p class="project-label text-xs text-primary uppercase tracking-widest mb-2">Featured Project</p>
+        {displayFeaturedLabel && (
+          <p class="project-label text-xs text-primary uppercase tracking-widest mb-2">Featured Project</p>
+        )}
         <h3 class="project-title text-xl min-[1200px]:text-2xl font-bold text-white mb-4">
           <a href={`/projects/${slug}`} class="hover:text-primary transition-colors">
             {project.data.title}
