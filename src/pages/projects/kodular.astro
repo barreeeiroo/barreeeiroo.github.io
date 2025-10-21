@@ -1,79 +1,622 @@
 ---
 import ProjectLayout from '../../layouts/ProjectLayout.astro';
-import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import { FULL_NAME } from '../../config';
+import creatorLight from '../../assets/kodular/creator_light.png';
+import creatorBlocks from '../../assets/kodular/creator_blocks_light.png';
+import creatorProjectSettings from '../../assets/kodular/creator_project_settings_light.png';
+import creatorProjects from '../../assets/kodular/creator_projects_light.png';
+import creatorApkBuild from '../../assets/kodular/creator_apk_build_light.png';
 
-// Project data
 const title = "Kodular";
-const description = "A comprehensive drag-and-drop platform that democratizes mobile app development, enabling anyone to build Android apps without writing a single line of code.";
-const technologies = ["Java", "Python", "Android", "GCP"];
-const githubUrl = "https://github.com/Kodular";
-const externalUrl = "https://www.kodular.io/";
+const description = "A drag-and-drop platform that democratizes mobile app development, enabling anyone to build Android apps without writing a single line of code.";
+
+const timelineEvents = [
+  {
+    year: '2017',
+    events: [
+      { date: 'JULY 6, 2017', text: 'Kodular founded by 7 co-founders as a fork from MIT App Inventor 2' },
+      { date: 'JULY 23, 2017', text: 'First public beta version released as "Makeroid"' }
+    ]
+  },
+  {
+    year: '2018',
+    events: [
+      { date: 'JUNE 22, 2018', text: 'First production version: Kodular Andromeda' },
+      { date: 'OCTOBER 26, 2018', text: 'Rebranded from "Makeroid" to "Kodular"' }
+    ]
+  },
+  {
+    year: '2019',
+    events: [
+      { date: 'AUGUST 31, 2019', text: 'Merged with AppyBuilder, another fork from MIT App Inventor 2' }
+    ]
+  },
+  {
+    year: '2021',
+    events: [
+      { date: 'JULY 15, 2021', text: 'Google partnership launched with Google Ad Manager integration' }
+    ]
+  },
+  {
+    year: '2022',
+    events: [
+      { date: 'JULY 11, 2022', text: 'Introduced Kodular Premium' }
+    ]
+  },
+  {
+    year: '2023',
+    events: [
+      { date: 'FEBRUARY 2023', text: 'Announced planned collaboration with MIT App Inventor 2' }
+    ]
+  },
+  {
+    year: '2025',
+    events: [
+      { date: 'JULY 29, 2025', text: 'Launched Kodular Monetize as a new usage-based pricing system' }
+    ]
+  }
+];
 ---
 
 <ProjectLayout title={title} description={description}>
-  <!-- Project Detail -->
-  <section class="px-6 md:px-6 pb-16 md:pb-24">
-    <div class="max-w-5xl mx-auto">
-      <!-- Technologies -->
-      <div class="mb-8">
-        <div class="flex flex-wrap gap-3 mb-6">
-          {technologies.map((tech) => (
-            <span class="text-xs uppercase tracking-wider border-2 border-primary px-3 py-2 text-primary font-bold">
-              {tech}
-            </span>
-          ))}
+  <!-- Project Info Section -->
+  <section class="section-animate px-6 md:px-12 pb-16 md:pb-24">
+    <div class="max-w-6xl mx-auto">
+      <!-- Role & Links -->
+      <div class="section-content mb-12">
+        <div class="inline-block border-2 border-primary px-4 py-2 mb-6">
+          <p class="text-primary font-bold uppercase tracking-wider text-sm">
+            Co-founder & CEO
+          </p>
         </div>
 
-        <!-- Links -->
-        <div class="flex gap-4">
+        <div class="flex gap-6 flex-wrap">
           <a
-            href={githubUrl}
-            class="inline-flex items-center gap-2 text-gray-light hover:text-primary transition-colors text-sm uppercase tracking-wider"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Icon name="carbon:logo-github" class="w-5 h-5" />
-            View on GitHub
-          </a>
-          <a
-            href={externalUrl}
+            href="https://www.kodular.io/"
             class="inline-flex items-center gap-2 text-gray-light hover:text-primary transition-colors text-sm uppercase tracking-wider"
             target="_blank"
             rel="noopener noreferrer"
           >
             <Icon name="carbon:launch" class="w-5 h-5" />
-            Live Demo
+            Visit Site
           </a>
+            <a
+                    href="https://github.com/Kodular"
+                    class="inline-flex items-center gap-2 text-gray-light hover:text-primary transition-colors text-sm uppercase tracking-wider"
+                    target="_blank"
+                    rel="noopener noreferrer"
+            >
+                <Icon name="carbon:logo-github" class="w-5 h-5" />
+                GitHub
+            </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="section-animate py-16 md:py-24 px-6 md:px-12 bg-navy/50">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="section-heading text-xs md:text-sm font-bold tracking-widest text-primary uppercase mb-12">
+        Impact & Reach
+      </h2>
+
+      <div class="section-content grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 items-start">
+        <!-- Stats - Left Side -->
+        <div class="space-y-8">
+          <!-- Stat 1 -->
+          <div class="stat-item border-l-4 border-primary pl-6 transition-all duration-300 hover:pl-8 hover:border-l-8">
+            <div class="stat-number text-5xl md:text-6xl font-bold text-white mb-2 transition-transform duration-300">2.0M+</div>
+            <div class="text-gray-light uppercase tracking-wider text-sm">Active Developers</div>
+            <div class="text-gray-light/60 text-xs mt-1">From 200+ Countries</div>
+          </div>
+
+          <!-- Stat 2 -->
+          <div class="stat-item border-l-4 border-primary pl-6 transition-all duration-300 hover:pl-8 hover:border-l-8">
+            <div class="stat-number text-5xl md:text-6xl font-bold text-white mb-2 transition-transform duration-300">4.7M+</div>
+            <div class="text-gray-light uppercase tracking-wider text-sm">Apps Created</div>
+            <div class="text-gray-light/60 text-xs mt-1">On The Platform</div>
+          </div>
+
+          <!-- Stat 3 -->
+          <div class="stat-item border-l-4 border-primary pl-6 transition-all duration-300 hover:pl-8 hover:border-l-8">
+            <div class="stat-number text-5xl md:text-6xl font-bold text-white mb-2 transition-transform duration-300">1.4M+</div>
+            <div class="text-gray-light uppercase tracking-wider text-sm">Daily Active Users</div>
+            <div class="text-gray-light/60 text-xs mt-1">Using Kodular Apps</div>
+          </div>
+        </div>
+
+        <!-- Kodular Creator Screenshot - Right Side (Larger) -->
+        <div class="relative group">
+          <div class="border-2 border-primary absolute inset-0 translate-x-3 translate-y-3 transition-transform group-hover:translate-x-1 group-hover:translate-y-1"></div>
+          <div class="relative overflow-hidden border-2 border-primary bg-black">
+            <Image
+              src={creatorLight}
+              alt="Kodular Creator Interface - Block-based visual programming editor"
+              class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-300"
+              quality={90}
+            />
+            <div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-all"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Section -->
+  <section class="timeline-section section-animate pt-16 md:pt-24 pb-0">
+    <div class="max-w-6xl mx-auto px-6 md:px-12">
+      <h2 class="section-heading text-xs md:text-sm font-bold tracking-widest text-primary uppercase mb-8">
+        Timeline & Milestones
+      </h2>
+    </div>
+
+    <div class="timeline-scroll-section section-content" style="height: 400vh;">
+      <div class="sticky top-0 flex flex-col items-center justify-center overflow-hidden min-h-screen">
+        <div class="timeline-parallax-container relative w-full h-80 flex items-center">
+          <!-- Horizontal line connecting cards -->
+          <div class="timeline-line absolute top-1/2 left-0 right-0 h-0.5 bg-primary/30 -translate-y-1/2"></div>
+
+          {timelineEvents.map((yearData, index) => (
+            <div
+              class="timeline-parallax-card timeline-card-item absolute w-96 h-80 border-2 border-primary p-6 bg-navy/90 flex flex-col"
+              data-index={index}
+            >
+              <div class="text-5xl font-bold text-primary mb-4">{yearData.year}</div>
+              <div class="space-y-3 flex-1 overflow-y-auto">
+                {yearData.events.map((event) => (
+                  <div>
+                    <div class="text-primary text-xs font-bold mb-1">{event.date}</div>
+                    <p class="text-gray-light text-sm leading-relaxed">{event.text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Scroll hint -->
+        <div class="timeline-scroll-hint flex flex-col items-center gap-3 mt-12 pointer-events-none">
+          <p class="text-primary text-sm uppercase tracking-wider font-bold">Scroll to keep exploring</p>
+          <div class="flex gap-1">
+            <div class="w-1 h-8 bg-primary timeline-animate-scroll-1"></div>
+            <div class="w-1 h-8 bg-primary timeline-animate-scroll-2"></div>
+            <div class="w-1 h-8 bg-primary timeline-animate-scroll-3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Role & Contributions Section -->
+  <section class="section-animate py-16 md:py-24 px-6 md:px-12 bg-navy/50">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="section-heading text-xs md:text-sm font-bold tracking-widest text-primary uppercase mb-12">
+        My Role & Contributions
+      </h2>
+
+      <div class="section-content grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Company Leadership -->
+        <div>
+          <h3 class="text-xl font-bold text-white mb-6 uppercase tracking-wider border-b-2 border-primary pb-3">
+            Company Leadership
+          </h3>
+          <ul class="space-y-3 text-gray-light">
+            <li class="flex items-start gap-3">
+              <span class="text-primary text-lg">→</span>
+              <span>Led company communications and updates through The Kodular Korner blog</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-primary text-lg">→</span>
+              <span>Oversaw AppyBuilder merge and integration</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-primary text-lg">→</span>
+              <span>Guided platform growth from beta to production, serving millions of users</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-primary text-lg">→</span>
+              <span>Contribute features back to MIT App Inventor 2</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Technical Contributions -->
+        <div>
+          <h3 class="text-xl font-bold text-white mb-6 uppercase tracking-wider border-b-2 border-primary pb-3">
+            Technical Contributions
+          </h3>
+          <ul class="space-y-3 text-gray-light">
+            <li class="flex items-start gap-3">
+              <span class="text-primary text-lg">→</span>
+              <span>Developed <strong class="text-white">My Kodular</strong> - User dashboard and account management system</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-primary text-lg">→</span>
+              <span>Developed <strong class="text-white">Kodular Auth</strong> - Centralized authentication service with 2FA support</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-primary text-lg">→</span>
+              <span>Developed <strong class="text-white">Kodular Monetize</strong> - Usage-based ad monetization system</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-primary text-lg">→</span>
+              <span>Manage all infrastructure across Google Cloud Platform, AWS, and Hetzner</span>
+            </li>
+          </ul>
         </div>
       </div>
 
-      <!-- Project Content -->
-      <div class="border-l-2 md:border-l-4 border-primary pl-6 md:pl-8 mb-12">
-        <div class="prose prose-invert prose-lg max-w-none text-gray-light [&>p]:mb-6 [&>p]:leading-relaxed">
-          <p>
-            Content for Kodular project page will go here.
-          </p>
+      <!-- Partnerships Section -->
+      <div class="partnerships-section mt-12 pt-12 border-t-2 border-primary/20">
+        <h3 class="text-xl font-bold text-white mb-6 uppercase tracking-wider">
+          Key Partnerships & Integrations
+        </h3>
+        <div class="partnerships-grid grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="partnership-item border-l-4 border-primary pl-4 transition-all duration-300 hover:pl-6 hover:border-l-8">
+            <div class="partnership-title text-white font-bold mb-1 text-lg transition-transform duration-300">AppyBuilder</div>
+            <div class="text-gray-light">Merged (2019)</div>
+          </div>
+          <div class="partnership-item border-l-4 border-primary pl-4 transition-all duration-300 hover:pl-6 hover:border-l-8">
+            <div class="partnership-title text-white font-bold mb-1 text-lg transition-transform duration-300">Google</div>
+            <div class="text-gray-light">Ad Manager integration (2021)</div>
+          </div>
+          <div class="partnership-item border-l-4 border-primary pl-4 transition-all duration-300 hover:pl-6 hover:border-l-8">
+            <div class="partnership-title text-white font-bold mb-1 text-lg transition-transform duration-300">MIT App Inventor</div>
+            <div class="text-gray-light">Planned collaboration (2023)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack Section -->
+  <section class="section-animate py-16 md:py-24 px-6 md:px-12">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="section-heading text-xs md:text-sm font-bold tracking-widest text-primary uppercase mb-12">
+        Technology & Infrastructure
+      </h2>
+
+      <div class="section-content grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+        <!-- Tech Stack -->
+        <div>
+          <h3 class="text-xl font-bold text-white mb-6 uppercase tracking-wider border-b-2 border-primary pb-3">
+            Tech Stack
+          </h3>
+          <ul class="space-y-3 text-gray-light">
+            <li class="flex items-start gap-3">
+              <span class="text-primary">•</span>
+              <span><strong class="text-white">Kodular Creator:</strong> Java, GWT (Google Web Toolkit), GCP, Hetzner</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-primary">•</span>
+              <span><strong class="text-white">Kodular Auth:</strong> Django, Python, AWS</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-primary">•</span>
+              <span><strong class="text-white">My Kodular:</strong> Django, Python, AWS</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-primary">•</span>
+              <span><strong class="text-white">Kodular Monetize:</strong> Serverless Microservices, Python, AWS</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Infrastructure -->
+        <div>
+          <h3 class="text-xl font-bold text-white mb-6 uppercase tracking-wider border-b-2 border-primary pb-3">
+            Infrastructure
+          </h3>
+          <div class="flex flex-wrap gap-3">
+            <span class="border-2 border-primary px-4 py-2 text-primary font-bold text-sm uppercase tracking-wider">Google Cloud Platform</span>
+            <span class="border-2 border-primary px-4 py-2 text-primary font-bold text-sm uppercase tracking-wider">Amazon Web Services</span>
+            <span class="border-2 border-primary px-4 py-2 text-primary font-bold text-sm uppercase tracking-wider">Hetzner</span>
+          </div>
         </div>
       </div>
 
-      <!-- Navigation -->
-      <div class="flex justify-between items-center pt-8 border-t-2 border-primary/20">
-        <a
-          href="/projects"
-          class="inline-flex items-center gap-2 text-gray-light hover:text-primary transition-colors text-sm uppercase tracking-wider"
-        >
-          <Icon name="carbon:arrow-left" class="w-4 h-4" />
-          All Projects
-        </a>
-        <a
-          href="/"
-          class="inline-flex items-center gap-2 text-gray-light hover:text-primary transition-colors text-sm uppercase tracking-wider"
-        >
-          Home
-          <Icon name="carbon:arrow-right" class="w-4 h-4" />
-        </a>
+      <!-- Platform Screenshots -->
+      <div class="screenshots-section mt-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Screenshot 1: Blocks Editor -->
+          <div class="screenshot-item relative group">
+            <div class="border-2 border-primary absolute inset-0 translate-x-2 translate-y-2 transition-transform group-hover:translate-x-1 group-hover:translate-y-1"></div>
+            <div class="relative overflow-hidden border-2 border-primary bg-black">
+              <Image
+                src={creatorBlocks}
+                alt="Kodular Creator - Block-based programming interface"
+                class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-300"
+                quality={90}
+              />
+              <div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-all"></div>
+            </div>
+          </div>
+
+          <!-- Screenshot 2: Project Settings -->
+          <div class="screenshot-item relative group">
+            <div class="border-2 border-primary absolute inset-0 translate-x-2 translate-y-2 transition-transform group-hover:translate-x-1 group-hover:translate-y-1"></div>
+            <div class="relative overflow-hidden border-2 border-primary bg-black">
+              <Image
+                src={creatorProjectSettings}
+                alt="Kodular Creator - Project settings configuration"
+                class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-300"
+                quality={90}
+              />
+              <div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-all"></div>
+            </div>
+          </div>
+
+          <!-- Screenshot 3: Projects Dashboard -->
+          <div class="screenshot-item relative group">
+            <div class="border-2 border-primary absolute inset-0 translate-x-2 translate-y-2 transition-transform group-hover:translate-x-1 group-hover:translate-y-1"></div>
+            <div class="relative overflow-hidden border-2 border-primary bg-black">
+              <Image
+                src={creatorProjects}
+                alt="Kodular Creator - Projects management dashboard"
+                class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-300"
+                quality={90}
+              />
+              <div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-all"></div>
+            </div>
+          </div>
+
+          <!-- Screenshot 4: APK Build -->
+          <div class="screenshot-item relative group">
+            <div class="border-2 border-primary absolute inset-0 translate-x-2 translate-y-2 transition-transform group-hover:translate-x-1 group-hover:translate-y-1"></div>
+            <div class="relative overflow-hidden border-2 border-primary bg-black">
+              <Image
+                src={creatorApkBuild}
+                alt="Kodular Creator - APK build and export interface"
+                class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-300"
+                quality={90}
+              />
+              <div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-all"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 </ProjectLayout>
+
+<script>
+  import { accessibleAnimate, getAnimationDelay } from '../../utils/motion';
+  import { animate } from 'motion';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const observerOptions = {
+      root: null,
+      threshold: 0.1,
+      rootMargin: '0px 0px 100px 0px'
+    };
+
+    const animatedSections = new Set<Element>();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !animatedSections.has(entry.target)) {
+          animatedSections.add(entry.target);
+          animateSection(entry.target as HTMLElement);
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections
+    const sections = document.querySelectorAll('.section-animate');
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+
+    function animateSection(section: HTMLElement) {
+      // Animate section heading
+      const heading = section.querySelector('.section-heading');
+      if (heading) {
+        accessibleAnimate(
+          heading,
+          { opacity: [0, 1], y: [-20, 0] },
+          { duration: 0.6, easing: 'ease-out' }
+        );
+      }
+
+      // Animate section content
+      const content = section.querySelector('.section-content');
+      if (content) {
+        accessibleAnimate(
+          content,
+          { opacity: [0, 1], y: [20, 0] },
+          { duration: 0.6, delay: getAnimationDelay(0.2), easing: 'ease-out' }
+        );
+      }
+
+      // Animate partnerships
+      const partnershipsSection = section.querySelector('.partnerships-section');
+      if (partnershipsSection) {
+        const title = partnershipsSection.querySelector('h3');
+        if (title) {
+          accessibleAnimate(
+            title,
+            { opacity: [0, 1], y: [-15, 0] },
+            { duration: 0.5, delay: getAnimationDelay(0.4), easing: 'ease-out' }
+          );
+        }
+
+        const partnershipsGrid = partnershipsSection.querySelectorAll('.partnerships-grid > div');
+        partnershipsGrid.forEach((partnership, index) => {
+          accessibleAnimate(
+            partnership,
+            { opacity: [0, 1], x: [-20, 0] },
+            { duration: 0.5, delay: getAnimationDelay(0.6 + index * 0.1), easing: 'ease-out' }
+          );
+        });
+      }
+
+      // Animate screenshots
+      const screenshotsSection = section.querySelector('.screenshots-section');
+      if (screenshotsSection) {
+        const screenshots = screenshotsSection.querySelectorAll('.screenshot-item');
+        screenshots.forEach((screenshot, index) => {
+          accessibleAnimate(
+            screenshot,
+            { opacity: [0, 1], y: [30, 0] },
+            { duration: 0.6, delay: getAnimationDelay(0.3 + index * 0.15), easing: 'ease-out' }
+          );
+        });
+      }
+
+      // Animate timeline
+      if (section.classList.contains('timeline-section')) {
+        const timelineLine = section.querySelector('.timeline-line');
+        if (timelineLine) {
+          accessibleAnimate(
+            timelineLine,
+            { opacity: [0, 0.3], scaleX: [0, 1] },
+            { duration: 0.8, delay: getAnimationDelay(0.2), easing: 'ease-out' }
+          );
+        }
+
+        const timelineCards = section.querySelectorAll('.timeline-card-item');
+        timelineCards.forEach((card, index) => {
+          accessibleAnimate(
+            card,
+            { opacity: [0, 1], scale: [0.9, 1] },
+            { duration: 0.6, delay: getAnimationDelay(0.25 + index * 0.05), easing: 'ease-out' }
+          );
+        });
+
+        const scrollHint = section.querySelector('.timeline-scroll-hint');
+        if (scrollHint) {
+          accessibleAnimate(
+            scrollHint,
+            { opacity: [0, 1], y: [20, 0] },
+            { duration: 0.5, delay: getAnimationDelay(0.6), easing: 'ease-out' }
+          );
+        }
+      }
+    }
+  });
+</script>
+
+<script is:inline define:vars={{ timelineEvents }}>
+  window.timelineEvents = timelineEvents;
+</script>
+
+<script>
+  import { scroll, animate } from 'motion';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const timelineEvents = window.timelineEvents;
+
+    // Parallax Timeline
+    const timelineSection = document.querySelector('.timeline-scroll-section');
+    const timelineCards = document.querySelectorAll('.timeline-parallax-card');
+    const scrollHint = document.querySelector('.timeline-scroll-hint');
+
+    if (timelineSection) {
+      // Fade out scroll hint as user scrolls
+      if (scrollHint) {
+        scroll(
+          animate(scrollHint, {
+            opacity: [1, 0]
+          }),
+          {
+            target: timelineSection,
+            offset: ['start start', '10% start']
+          }
+        );
+      }
+
+      const totalCards = timelineCards.length;
+      const cardWidth = 384; // w-96
+      const viewportWidth = window.innerWidth;
+
+      // Center position
+      const centerX = (viewportWidth - cardWidth) / 2;
+      // Spacing between cards (reduced to show 3 cards on screen)
+      const spacing = cardWidth + 80; // card width + gap between cards
+
+      timelineCards.forEach((card, index) => {
+        // Initial position: first card centered, others spaced to the right
+        const initialX = centerX + (index * spacing);
+
+        // Final position: last card centered, others to the left
+        const finalX = centerX + ((index - (totalCards - 1)) * spacing);
+
+        // Different parallax speeds for subtle depth effect
+        const parallaxFactor = 1 + (index * 0.03);
+        const adjustedFinalX = finalX * parallaxFactor;
+
+        // Set initial position immediately
+        (card as HTMLElement).style.transform = `translateX(${initialX}px)`;
+
+        scroll(
+          animate(card, {
+            x: [initialX, adjustedFinalX]
+          }),
+          {
+            target: timelineSection,
+            offset: ['start start', 'end end']
+          }
+        );
+      });
+    }
+  });
+</script>
+
+<style>
+  /* Partnerships section */
+  .partnerships-section h3,
+  .partnerships-grid > div {
+    opacity: 0;
+  }
+
+  /* Screenshots */
+  .screenshot-item {
+    opacity: 0;
+  }
+
+  /* Timeline parallax */
+  .timeline-parallax-card {
+    will-change: transform, opacity;
+  }
+
+  .timeline-scroll-section {
+    position: relative;
+  }
+
+  /* Timeline initial states */
+  .timeline-line,
+  .timeline-card-item,
+  .timeline-scroll-hint {
+    opacity: 0;
+  }
+
+  /* Stat hover effects */
+  .stat-item:hover .stat-number {
+    transform: scale(1.05);
+  }
+
+  /* Partnership hover effects */
+  .partnership-item:hover .partnership-title {
+    transform: translateX(5px);
+  }
+
+  @keyframes timeline-scroll-bounce {
+    0%, 100% { transform: translateY(0); opacity: 0.5; }
+    50% { transform: translateY(8px); opacity: 1; }
+  }
+
+  .timeline-animate-scroll-1 {
+    animation: timeline-scroll-bounce 1.5s ease-in-out infinite;
+  }
+
+  .timeline-animate-scroll-2 {
+    animation: timeline-scroll-bounce 1.5s ease-in-out infinite 0.2s;
+  }
+
+  .timeline-animate-scroll-3 {
+    animation: timeline-scroll-bounce 1.5s ease-in-out infinite 0.4s;
+  }
+</style>

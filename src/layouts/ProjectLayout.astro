@@ -12,8 +12,8 @@ const { title, description } = Astro.props;
 
 <Layout title={title} description={description}>
   <!-- Back Button Section -->
-  <section class="py-8 md:py-12 px-6 md:px-6">
-    <div class="max-w-5xl mx-auto">
+  <section class="py-8 md:py-12 px-6 md:px-12">
+    <div class="max-w-6xl mx-auto">
       <a
         href="/projects"
         class="back-link relative inline-flex items-center gap-2 text-primary hover:text-white transition-colors text-sm uppercase tracking-wider font-bold"
@@ -25,8 +25,8 @@ const { title, description } = Astro.props;
   </section>
 
   <!-- Project Hero Section -->
-  <section class="py-8 md:py-12 px-6 md:px-6">
-    <div class="max-w-5xl mx-auto">
+  <section class="py-8 md:py-12 px-6 md:px-12">
+    <div class="max-w-6xl mx-auto">
       <h1 class="text-4xl md:text-6xl font-black text-white uppercase tracking-tight mb-6">
         {title}
       </h1>
@@ -42,6 +42,40 @@ const { title, description } = Astro.props;
   <slot />
 </Layout>
 
+<script>
+  import { accessibleAnimate, getAnimationDelay } from '../utils/motion';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Animate hero elements immediately
+    const backLink = document.querySelector('.back-link');
+    if (backLink) {
+      accessibleAnimate(
+        backLink,
+        { opacity: [0, 1], x: [-20, 0] },
+        { duration: 0.5, easing: 'ease-out' }
+      );
+    }
+
+    const heroTitle = document.querySelector('h1');
+    if (heroTitle) {
+      accessibleAnimate(
+        heroTitle,
+        { opacity: [0, 1], y: [-30, 0] },
+        { duration: 0.6, delay: getAnimationDelay(0.1), easing: 'ease-out' }
+      );
+    }
+
+    const heroDescription = document.querySelector('h1 + div');
+    if (heroDescription) {
+      accessibleAnimate(
+        heroDescription,
+        { opacity: [0, 1], x: [20, 0] },
+        { duration: 0.5, delay: getAnimationDelay(0.25), easing: 'ease-out' }
+      );
+    }
+  });
+</script>
+
 <style>
   .back-link::after {
     content: '';
@@ -56,5 +90,12 @@ const { title, description } = Astro.props;
 
   .back-link:hover::after {
     width: 100%;
+  }
+
+  /* Initial state for animated elements */
+  .back-link,
+  h1,
+  h1 + div {
+    opacity: 0;
   }
 </style>
