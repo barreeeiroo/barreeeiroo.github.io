@@ -39,36 +39,53 @@ import { EMAIL_ADDRESS, GITHUB_LINK, LINKEDIN_LINK, INSTAGRAM_LINK, X_LINK } fro
 </div>
 
 <script>
-  function updateDecorationPosition() {
-    const footer = document.querySelector('footer');
-    const leftDecoration = document.getElementById('left-decoration');
-    const rightDecoration = document.getElementById('right-decoration');
+  import { animate } from 'motion';
 
-    if (!footer || !leftDecoration || !rightDecoration) return;
+  document.addEventListener('DOMContentLoaded', () => {
+    // Animate side decorations on page load
+    animate(
+      '#left-decoration',
+      { opacity: [0, 1], x: [-40, 0] },
+      { duration: 0.6, delay: 0.3, easing: 'ease-out' }
+    );
 
-    const footerRect = footer.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
+    animate(
+      '#right-decoration',
+      { opacity: [0, 1], x: [40, 0] },
+      { duration: 0.6, delay: 0.4, easing: 'ease-out' }
+    );
 
-    // Calculate how far the footer is from the bottom of the viewport
-    const distanceFromBottom = windowHeight - footerRect.top;
+    function updateDecorationPosition() {
+      const footer = document.querySelector('footer');
+      const leftDecoration = document.getElementById('left-decoration');
+      const rightDecoration = document.getElementById('right-decoration');
 
-    if (distanceFromBottom > 0) {
-      // Footer is visible, adjust the decorations to stop at the footer
-      leftDecoration.style.bottom = `${distanceFromBottom}px`;
-      rightDecoration.style.bottom = `${distanceFromBottom}px`;
-    } else {
-      // Footer is not visible, keep decorations at bottom
-      leftDecoration.style.bottom = '0px';
-      rightDecoration.style.bottom = '0px';
+      if (!footer || !leftDecoration || !rightDecoration) return;
+
+      const footerRect = footer.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // Calculate how far the footer is from the bottom of the viewport
+      const distanceFromBottom = windowHeight - footerRect.top;
+
+      if (distanceFromBottom > 0) {
+        // Footer is visible, adjust the decorations to stop at the footer
+        leftDecoration.style.bottom = `${distanceFromBottom}px`;
+        rightDecoration.style.bottom = `${distanceFromBottom}px`;
+      } else {
+        // Footer is not visible, keep decorations at bottom
+        leftDecoration.style.bottom = '0px';
+        rightDecoration.style.bottom = '0px';
+      }
     }
-  }
 
-  // Update on scroll
-  window.addEventListener('scroll', updateDecorationPosition);
+    // Update on scroll
+    window.addEventListener('scroll', updateDecorationPosition);
 
-  // Update on resize
-  window.addEventListener('resize', updateDecorationPosition);
+    // Update on resize
+    window.addEventListener('resize', updateDecorationPosition);
 
-  // Initial update
-  updateDecorationPosition();
+    // Initial update
+    updateDecorationPosition();
+  });
 </script>

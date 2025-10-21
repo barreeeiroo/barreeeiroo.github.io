@@ -11,11 +11,12 @@ interface Props {
 
 const { project, imageAlign, featuredImages } = Astro.props;
 const { Content } = await project.render();
+const slug = project.id.replace('.md', '');
 ---
 
-<div class="project-card featured-project relative">
+<div class="project-card featured-project relative min-h-[400px] min-[1100px]:min-h-[500px]">
   <!-- Mobile: Background Image Layout -->
-  <div class="min-[960px]:hidden relative group">
+  <div class="min-[1100px]:hidden relative group">
     <div class="border-2 border-primary absolute inset-0 translate-x-2 translate-y-2 transition-transform group-hover:translate-x-1 group-hover:translate-y-1"></div>
     <div class="relative overflow-hidden border-2 border-primary bg-black">
       <!-- Background Image -->
@@ -33,7 +34,11 @@ const { Content } = await project.render();
       <!-- Content Overlay -->
       <div class="relative p-6 min-h-[400px] flex flex-col justify-end">
       <p class="text-xs text-primary uppercase tracking-widest mb-2">Featured Project</p>
-      <h3 class="text-2xl font-bold text-white mb-4">{project.data.title}</h3>
+      <h3 class="text-2xl font-bold text-white mb-4">
+        <a href={`/projects/${slug}`} class="hover:text-primary transition-colors">
+          {project.data.title}
+        </a>
+      </h3>
 
       <div class="mb-4">
         <div class="prose prose-invert prose-sm max-w-none text-gray-light [&>p]:mb-3 [&>ul]:list-disc [&>ul]:ml-5 [&>ul]:mb-3 [&>li]:mb-1">
@@ -47,32 +52,42 @@ const { Content } = await project.render();
         ))}
       </div>
 
-      <div class="flex gap-4">
-        {project.data.githubUrl && (
-          <a
-            href={project.data.githubUrl}
-            class="text-gray-light hover:text-primary transition-colors"
-            aria-label="GitHub"
-          >
-            <Icon name="carbon:logo-github" class="w-5 h-5" />
-          </a>
-        )}
-        {project.data.externalUrl && (
-          <a
-            href={project.data.externalUrl}
-            class="text-gray-light hover:text-primary transition-colors"
-            aria-label="External Link"
-          >
-            <Icon name="carbon:launch" class="w-5 h-5" />
-          </a>
-        )}
+      <div class="flex items-center justify-between">
+        <div class="flex gap-4">
+          {project.data.githubUrl && (
+            <a
+              href={project.data.githubUrl}
+              class="text-gray-light hover:text-primary transition-colors"
+              aria-label="GitHub"
+            >
+              <Icon name="carbon:logo-github" class="w-5 h-5" />
+            </a>
+          )}
+          {project.data.externalUrl && (
+            <a
+              href={project.data.externalUrl}
+              class="text-gray-light hover:text-primary transition-colors"
+              aria-label="External Link"
+            >
+              <Icon name="carbon:launch" class="w-5 h-5" />
+            </a>
+          )}
+        </div>
+
+        <a
+          href={`/projects/${slug}`}
+          class="learn-more-btn relative inline-flex items-center gap-2 text-primary hover:text-white transition-colors text-sm uppercase tracking-wider font-bold"
+        >
+          Learn More
+          <Icon name="carbon:arrow-right" class="w-4 h-4" />
+        </a>
       </div>
       </div>
     </div>
   </div>
 
   <!-- Desktop: Overlapping Layout -->
-  <div class="hidden min-[960px]:flex min-[960px]:items-center">
+  <div class="hidden min-[1100px]:flex min-[1100px]:items-center">
     <!-- Project Image - 60% width -->
     <div class={`relative group w-[60%] ${imageAlign === 'left' ? '' : 'ml-auto'}`}>
       <div class="border-2 border-primary absolute inset-0 translate-x-3 translate-y-3 transition-transform group-hover:translate-x-1 group-hover:translate-y-1"></div>
@@ -88,12 +103,16 @@ const { Content } = await project.render();
     </div>
 
     <!-- Project Info - Overlapping - 50% width -->
-    <div class={`absolute top-1/2 -translate-y-1/2 w-[50%] ${imageAlign === 'left' ? 'right-0' : 'left-0'}`}>
+    <div class={`absolute top-1/2 -translate-y-1/2 w-[50%] ${imageAlign === 'left' ? 'right-0 pr-4' : 'left-0 pl-4'}`}>
       <div class={`${imageAlign === 'left' ? 'text-right' : 'text-left'}`}>
         <p class="text-xs text-primary uppercase tracking-widest mb-2">Featured Project</p>
-        <h3 class="text-2xl font-bold text-white mb-4">{project.data.title}</h3>
+        <h3 class="text-xl min-[1200px]:text-2xl font-bold text-white mb-4">
+          <a href={`/projects/${slug}`} class="hover:text-primary transition-colors">
+            {project.data.title}
+          </a>
+        </h3>
       </div>
-      <div class="bg-navy border-2 border-primary/50 p-6 mb-4 backdrop-blur-sm">
+      <div class="bg-navy border-2 border-primary/50 p-4 min-[1200px]:p-6 mb-4 backdrop-blur-sm">
         <div class="prose prose-invert prose-sm max-w-none text-gray-light [&>p]:mb-4 [&>ul]:list-disc [&>ul]:ml-5 [&>ul]:mb-4 [&>li]:mb-1">
           <Content />
         </div>
@@ -103,26 +122,53 @@ const { Content } = await project.render();
           <span class="uppercase tracking-wider">{tech}</span>
         ))}
       </div>
-      <div class={`flex gap-4 ${imageAlign === 'left' ? 'justify-end' : 'justify-start'}`}>
-        {project.data.githubUrl && (
-          <a
-            href={project.data.githubUrl}
-            class="text-gray-light hover:text-primary transition-colors"
-            aria-label="GitHub"
-          >
-            <Icon name="carbon:logo-github" class="w-5 h-5" />
-          </a>
-        )}
-        {project.data.externalUrl && (
-          <a
-            href={project.data.externalUrl}
-            class="text-gray-light hover:text-primary transition-colors"
-            aria-label="External Link"
-          >
-            <Icon name="carbon:launch" class="w-5 h-5" />
-          </a>
-        )}
+      <div class={`flex items-center ${imageAlign === 'left' ? 'justify-end' : 'justify-start'} gap-6`}>
+        <div class={`flex gap-4 ${imageAlign === 'left' ? 'order-2' : 'order-1'}`}>
+          {project.data.githubUrl && (
+            <a
+              href={project.data.githubUrl}
+              class="text-gray-light hover:text-primary transition-colors"
+              aria-label="GitHub"
+            >
+              <Icon name="carbon:logo-github" class="w-5 h-5" />
+            </a>
+          )}
+          {project.data.externalUrl && (
+            <a
+              href={project.data.externalUrl}
+              class="text-gray-light hover:text-primary transition-colors"
+              aria-label="External Link"
+            >
+              <Icon name="carbon:launch" class="w-5 h-5" />
+            </a>
+          )}
+        </div>
+
+        <a
+          href={`/projects/${slug}`}
+          class={`learn-more-btn relative inline-flex items-center gap-2 text-primary hover:text-white transition-colors text-sm uppercase tracking-wider font-bold ${imageAlign === 'left' ? 'order-1' : 'order-2'}`}
+        >
+          Learn More
+          <Icon name="carbon:arrow-right" class="w-4 h-4" />
+        </a>
       </div>
     </div>
   </div>
 </div>
+
+<style>
+  .learn-more-btn::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-primary);
+    transition: width 0.3s ease;
+  }
+
+  .learn-more-btn:hover::after {
+    width: 100%;
+  }
+</style>

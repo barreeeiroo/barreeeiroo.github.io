@@ -14,19 +14,6 @@ function isElementInViewport(element: Element): boolean {
 
 // Wait for DOM to be ready
 document.addEventListener('DOMContentLoaded', () => {
-	// Side decorations
-	animate(
-		'#left-decoration',
-		{ opacity: [0, 1], x: [-40, 0] },
-		{ duration: 0.6, delay: 0.3, easing: 'ease-out' }
-	);
-
-	animate(
-		'#right-decoration',
-		{ opacity: [0, 1], x: [40, 0] },
-		{ duration: 0.6, delay: 0.4, easing: 'ease-out' }
-	);
-
 	// Only animate hero if it's in the viewport (handles scroll restoration)
 	const heroSection = document.querySelector('#greeting')?.closest('section');
 	const isHeroVisible = heroSection && isElementInViewport(heroSection);

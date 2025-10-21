@@ -14,6 +14,7 @@ const { title, description } = Astro.props;
 
 // If title is provided, use "Title - FULL_NAME", otherwise use "FULL_NAME - ROLE" (for index)
 const pageTitle = title ? `${title} - ${FULL_NAME}` : `${FULL_NAME} - ${ROLE}`;
+const isHomePage = !title;
 ---
 
 <html lang="en">
@@ -26,7 +27,7 @@ const pageTitle = title ? `${title} - ${FULL_NAME}` : `${FULL_NAME} - ${ROLE}`;
     <title>{pageTitle}</title>
   </head>
   <body class="bg-gradient-to-br from-navy via-black to-navy text-white overflow-x-hidden">
-    <Navbar />
+    <Navbar isHomePage={isHomePage} />
     <SideDecoration />
     <!-- Content Wrapper -->
     <div class="relative pt-16 md:px-20" style="z-index: 10;">

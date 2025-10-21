@@ -1,0 +1,70 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import FeaturedProject from '../../components/FeaturedProject.astro';
+import { Icon } from 'astro-icon/components';
+import type { ImageMetadata } from 'astro';
+
+// Fetch featured projects and sort by order
+const featuredProjects = await getCollection('featured-projects');
+const sortedProjects = featuredProjects.sort((a, b) => a.data.order - b.data.order);
+
+// Import featured images
+const featuredImages = Object.entries(
+  import.meta.glob<{ default: ImageMetadata }>('../../assets/featured/*.{jpeg,jpg,png,gif,webp}')
+).reduce((acc, [path, value]) => {
+  const filename = path.split('/').pop();
+  acc[filename] = value;
+  return acc;
+}, {});
+---
+
+<Layout
+  title="Projects"
+  description="A selection of my most impactful work, from drag-and-drop app development platforms to intelligent scheduling systems. Each project represents a unique challenge and solution."
+>
+  <!-- Projects Hero Section -->
+  <section class="py-16 md:py-24 px-6 md:px-6">
+    <div class="max-w-6xl mx-auto">
+      <p class="text-xs md:text-sm font-bold tracking-widest text-primary uppercase mb-4">
+        Portfolio
+      </p>
+      <h1 class="text-4xl md:text-6xl font-black text-white uppercase tracking-tight mb-6">
+        Featured Projects
+      </h1>
+      <div class="border-l-2 md:border-l-4 border-primary pl-4 md:pl-6 mb-16 md:mb-24">
+        <p class="text-lg md:text-xl text-gray-light max-w-3xl">
+          A selection of my most impactful work, from drag-and-drop app development platforms to intelligent scheduling systems. Each project represents a unique challenge and solution.
+        </p>
+      </div>
+
+      <!-- Featured Projects -->
+      <div class="space-y-12 min-[1100px]:space-y-16 mb-12 min-[1100px]:mb-16">
+        {sortedProjects.map((project, index) => {
+          const imageAlign = index % 2 === 0 ? 'left' : 'right';
+          return (
+            <FeaturedProject
+              project={project}
+              imageAlign={imageAlign}
+              featuredImages={featuredImages}
+            />
+          );
+        })}
+      </div>
+
+      <!-- View Archive Link -->
+      <div class="text-center">
+        <div class="relative inline-block group">
+          <div class="border-2 border-primary absolute inset-0 translate-x-2 translate-y-2 md:translate-x-3 md:translate-y-3 transition-transform group-hover:translate-x-1 group-hover:translate-y-1"></div>
+          <a
+            href="/archive"
+            class="relative inline-flex items-center gap-3 px-8 md:px-12 py-4 md:py-5 bg-black border-2 border-primary text-primary hover:bg-primary hover:text-black transition-all font-bold uppercase text-xs md:text-sm tracking-widest"
+          >
+            View All Projects Archive
+            <Icon name="carbon:arrow-right" class="w-4 h-4 md:w-5 md:h-5" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
