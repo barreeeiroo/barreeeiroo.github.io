@@ -8,21 +8,44 @@ const currentYear = new Date().getFullYear();
 <footer class="py-8 md:py-12 px-6 md:px-6 border-t-2 border-primary/20">
   <div class="max-w-6xl mx-auto text-center">
     <div class="flex justify-center gap-6 mb-4 md:mb-6 md:hidden">
-      <a href={GITHUB_LINK} class="text-gray-light hover:text-primary transition-colors" aria-label="GitHub">
+      <a href={GITHUB_LINK} class="footer-social-link text-gray-light hover:text-primary transition-colors" style="animation-delay: 0.3s" aria-label="GitHub">
         <Icon name="carbon:logo-github" class="w-5 h-5 md:w-6 md:h-6" />
       </a>
-      <a href={LINKEDIN_LINK} class="text-gray-light hover:text-primary transition-colors" aria-label="LinkedIn">
+      <a href={LINKEDIN_LINK} class="footer-social-link text-gray-light hover:text-primary transition-colors" style="animation-delay: 0.4s" aria-label="LinkedIn">
         <Icon name="carbon:logo-linkedin" class="w-5 h-5 md:w-6 md:h-6" />
       </a>
-      <a href={INSTAGRAM_LINK} class="text-gray-light hover:text-primary transition-colors" aria-label="Instagram">
+      <a href={INSTAGRAM_LINK} class="footer-social-link text-gray-light hover:text-primary transition-colors" style="animation-delay: 0.5s" aria-label="Instagram">
         <Icon name="carbon:logo-instagram" class="w-5 h-5 md:w-6 md:h-6" />
       </a>
-      <a href={X_LINK} class="text-gray-light hover:text-primary transition-colors" aria-label="X">
+      <a href={X_LINK} class="footer-social-link text-gray-light hover:text-primary transition-colors" style="animation-delay: 0.6s" aria-label="X">
         <Icon name="carbon:logo-x" class="w-5 h-5 md:w-6 md:h-6" />
       </a>
     </div>
-    <p class="text-xs text-gray-light uppercase tracking-widest">
+    <p class="footer-copyright text-xs text-gray-light uppercase tracking-widest">
       {FULL_NAME} &copy; {currentYear}
     </p>
   </div>
 </footer>
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .footer-social-link {
+    opacity: 0;
+    animation: fadeInUp 0.4s ease-out forwards;
+  }
+
+  .footer-copyright {
+    opacity: 0;
+    animation: fadeInUp 0.5s ease-out 0.7s forwards;
+  }
+</style>
