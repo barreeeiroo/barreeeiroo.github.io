@@ -1,0 +1,60 @@
+---
+import Layout from './Layout.astro';
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<Layout title={title} description={description}>
+  <!-- Back Button Section -->
+  <section class="py-8 md:py-12 px-6 md:px-6">
+    <div class="max-w-5xl mx-auto">
+      <a
+        href="/projects"
+        class="back-link relative inline-flex items-center gap-2 text-primary hover:text-white transition-colors text-sm uppercase tracking-wider font-bold"
+      >
+        <Icon name="carbon:arrow-left" class="w-4 h-4" />
+        Back to Featured Projects
+      </a>
+    </div>
+  </section>
+
+  <!-- Project Hero Section -->
+  <section class="py-8 md:py-12 px-6 md:px-6">
+    <div class="max-w-5xl mx-auto">
+      <h1 class="text-4xl md:text-6xl font-black text-white uppercase tracking-tight mb-6">
+        {title}
+      </h1>
+      <div class="border-l-2 md:border-l-4 border-primary pl-4 md:pl-6 mb-8">
+        <p class="text-lg md:text-xl text-gray-light max-w-3xl">
+          {description}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Content -->
+  <slot />
+</Layout>
+
+<style>
+  .back-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-primary);
+    transition: width 0.3s ease;
+  }
+
+  .back-link:hover::after {
+    width: 100%;
+  }
+</style>
