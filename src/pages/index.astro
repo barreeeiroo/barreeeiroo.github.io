@@ -15,49 +15,58 @@ import WhatsNext from '../sections/WhatsNext.astro';
     </section>
 
     <!-- Section 01: About Me -->
-    <section id="about" class="py-16 md:py-24 px-6 md:px-6">
+    <section id="about" class="section-animate py-16 md:py-24 px-6 md:px-6">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-xs md:text-sm font-bold tracking-widest text-primary uppercase mb-6 md:mb-8">
+            <h2 class="section-heading text-xs md:text-sm font-bold tracking-widest text-primary uppercase mb-6 md:mb-8">
                 <span class="text-xl md:text-2xl mr-2">01.</span> About Me
             </h2>
 
-            <AboutMe />
+            <div class="section-content">
+                <AboutMe />
+            </div>
         </div>
     </section>
 
     <!-- Section 02: Where I've Worked -->
-    <section id="experience" class="py-16 md:py-24 px-6 md:px-6">
+    <section id="experience" class="section-animate py-16 md:py-24 px-6 md:px-6">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-xs md:text-sm font-bold tracking-widest text-primary uppercase mb-8 md:mb-12">
+            <h2 class="section-heading text-xs md:text-sm font-bold tracking-widest text-primary uppercase mb-8 md:mb-12">
                 <span class="text-xl md:text-2xl mr-2">02.</span> Where I've Worked
             </h2>
 
-            <Experience />
+            <div class="section-content">
+                <Experience />
+            </div>
         </div>
     </section>
 
     <!-- Section 03: Some Things I've Built -->
-    <section id="projects" class="py-16 md:py-24 px-6 md:px-6">
+    <section id="projects" class="section-animate py-16 md:py-24 px-6 md:px-6">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-xs md:text-sm font-bold tracking-widest text-primary uppercase mb-8 md:mb-12">
+            <h2 class="section-heading text-xs md:text-sm font-bold tracking-widest text-primary uppercase mb-8 md:mb-12">
                 <span class="text-xl md:text-2xl mr-2">03.</span> Some Things I've Built
             </h2>
 
-            <Featured />
+            <div class="section-content">
+                <Featured />
+            </div>
         </div>
     </section>
 
     <!-- Section 04: What's Next? -->
-    <section id="contact" class="py-16 md:py-24 px-6 md:px-6">
+    <section id="contact" class="section-animate py-16 md:py-24 px-6 md:px-6">
         <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-xs md:text-sm font-bold tracking-widest text-primary uppercase mb-6 md:mb-8">
+            <h2 class="section-heading text-xs md:text-sm font-bold tracking-widest text-primary uppercase mb-6 md:mb-8">
                 <span class="text-xl md:text-2xl mr-2">04.</span> What's Next?
             </h2>
 
-            <WhatsNext />
+            <div class="section-content">
+                <WhatsNext />
+            </div>
         </div>
     </section>
 </Layout>
 
 <script src="../scripts/index.ts"></script>
 <script src="../scripts/scroll-spy.ts"></script>
+<script src="../scripts/scroll-animations.ts"></script>

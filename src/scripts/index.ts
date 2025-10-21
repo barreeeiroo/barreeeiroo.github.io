@@ -1,31 +1,91 @@
 import { animate } from 'motion';
 
+// Helper function to check if element is in viewport
+function isElementInViewport(element: Element): boolean {
+	const rect = element.getBoundingClientRect();
+	return (
+		rect.top < window.innerHeight &&
+		rect.bottom > 0
+	);
+}
+
 // Wait for DOM to be ready
 document.addEventListener('DOMContentLoaded', () => {
-	// Hero animations
+	// Always animate navbar and side decorations (visible regardless of scroll position)
+	// Navbar animations
 	animate(
-		'#greeting',
-		{ opacity: [0, 1], y: [-20, 0] },
-		{ duration: 0.5, easing: 'ease-out' }
+		'#navbar',
+		{ opacity: [0, 1], y: [-40, 0] },
+		{ duration: 0.6, easing: 'ease-out' }
+	);
+
+	// Navbar logo
+	animate(
+		'#nav-logo',
+		{ opacity: [0, 1], y: [-10, 0] },
+		{ duration: 0.4, delay: 0.15, easing: 'ease-out' }
+	);
+
+	// Navbar items with stagger
+	const navItems = document.querySelectorAll('.nav-item');
+	navItems.forEach((item, index) => {
+		animate(
+			item,
+			{ opacity: [0, 1], y: [-10, 0] },
+			{ duration: 0.4, delay: 0.2 + (index * 0.1), easing: 'ease-out' }
+		);
+	});
+
+	// Side decorations
+	animate(
+		'#left-decoration',
+		{ opacity: [0, 1], x: [-40, 0] },
+		{ duration: 0.6, delay: 0.3, easing: 'ease-out' }
 	);
 
 	animate(
-		'#name',
-		{ opacity: [0, 1], y: [-30, 0] },
-		{ duration: 0.6, delay: 0.15, easing: 'ease-out' }
+		'#right-decoration',
+		{ opacity: [0, 1], x: [40, 0] },
+		{ duration: 0.6, delay: 0.4, easing: 'ease-out' }
 	);
 
-	animate(
-		'#tagline',
-		{ opacity: [0, 1], x: [-20, 0] },
-		{ duration: 0.5, delay: 0.3, easing: 'ease-out' }
-	);
+	// Only animate hero if it's in the viewport (handles scroll restoration)
+	const heroSection = document.querySelector('#greeting')?.closest('section');
+	const isHeroVisible = heroSection && isElementInViewport(heroSection);
 
-	animate(
-		'#scroll-indicator',
-		{ opacity: [0, 1], y: [20, 0] },
-		{ duration: 0.5, delay: 0.5, easing: 'ease-out' }
-	);
+	if (isHeroVisible) {
+		// Hero animations
+		animate(
+			'#greeting',
+			{ opacity: [0, 1], y: [-20, 0] },
+			{ duration: 0.5, easing: 'ease-out' }
+		);
+
+		animate(
+			'#name',
+			{ opacity: [0, 1], y: [-30, 0] },
+			{ duration: 0.6, delay: 0.15, easing: 'ease-out' }
+		);
+
+		animate(
+			'#tagline',
+			{ opacity: [0, 1], x: [-20, 0] },
+			{ duration: 0.5, delay: 0.3, easing: 'ease-out' }
+		);
+
+		animate(
+			'#scroll-indicator',
+			{ opacity: [0, 1], y: [20, 0] },
+			{ duration: 0.5, delay: 0.5, easing: 'ease-out' }
+		);
+	} else {
+		// If hero is not visible, make elements visible immediately
+		const heroElements = ['#greeting', '#name', '#tagline', '#scroll-indicator'];
+		heroElements.forEach(selector => {
+			const element = document.querySelector(selector) as HTMLElement;
+			if (element) element.style.opacity = '1';
+		});
+	}
 
 	// Scroll indicator hover effect
 	const scrollIndicator = document.getElementById('scroll-indicator');

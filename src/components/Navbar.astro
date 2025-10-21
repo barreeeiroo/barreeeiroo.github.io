@@ -2,26 +2,26 @@
 import { FIRST_NAME } from '../config';
 ---
 
-<nav class="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-sm border-b-2 border-navy">
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-sm border-b-2 border-navy">
     <div class="max-w-6xl mx-auto px-6 py-4">
         <div class="flex items-center justify-between">
             <!-- Logo/Name -->
-            <a href="#" class="text-xl md:text-2xl font-bold text-white hover:text-primary transition-colors">
+            <a href="#" id="nav-logo" class="text-xl md:text-2xl font-bold text-white hover:text-primary transition-colors">
                 {FIRST_NAME}<span class="text-primary">.</span>
             </a>
 
             <!-- Desktop Navigation -->
             <div class="hidden md:flex items-center gap-8">
-                <a href="#about" class="nav-link" data-section="about">
+                <a href="#about" class="nav-link nav-item" data-section="about">
                     <span class="text-primary">01.</span> About
                 </a>
-                <a href="#experience" class="nav-link" data-section="experience">
+                <a href="#experience" class="nav-link nav-item" data-section="experience">
                     <span class="text-primary">02.</span> Experience
                 </a>
-                <a href="#projects" class="nav-link" data-section="projects">
+                <a href="#projects" class="nav-link nav-item" data-section="projects">
                     <span class="text-primary">03.</span> Projects
                 </a>
-                <a href="#contact" class="nav-link" data-section="contact">
+                <a href="#contact" class="nav-link nav-item" data-section="contact">
                     <span class="text-primary">04.</span> Contact
                 </a>
             </div>
