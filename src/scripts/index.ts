@@ -1,3 +1,6 @@
+import './index-scroll-animations';
+import './index-scroll-spy';
+
 import { animate } from 'motion';
 
 // Helper function to check if element is in viewport
@@ -11,31 +14,6 @@ function isElementInViewport(element: Element): boolean {
 
 // Wait for DOM to be ready
 document.addEventListener('DOMContentLoaded', () => {
-	// Always animate navbar and side decorations (visible regardless of scroll position)
-	// Navbar animations
-	animate(
-		'#navbar',
-		{ opacity: [0, 1], y: [-40, 0] },
-		{ duration: 0.6, easing: 'ease-out' }
-	);
-
-	// Navbar logo
-	animate(
-		'#nav-logo',
-		{ opacity: [0, 1], y: [-10, 0] },
-		{ duration: 0.4, delay: 0.15, easing: 'ease-out' }
-	);
-
-	// Navbar items with stagger
-	const navItems = document.querySelectorAll('.nav-item');
-	navItems.forEach((item, index) => {
-		animate(
-			item,
-			{ opacity: [0, 1], y: [-10, 0] },
-			{ duration: 0.4, delay: 0.2 + (index * 0.1), easing: 'ease-out' }
-		);
-	});
-
 	// Side decorations
 	animate(
 		'#left-decoration',

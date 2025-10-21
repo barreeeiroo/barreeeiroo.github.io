@@ -181,6 +181,32 @@ import { FIRST_NAME } from '../config';
 </style>
 
 <script>
+    import { animate } from 'motion';
+
+    // Navbar animations
+    animate(
+        '#navbar',
+        { opacity: [0, 1], y: [-40, 0] },
+        { duration: 0.6, easing: 'ease-out' }
+    );
+
+    // Navbar logo
+    animate(
+        '#nav-logo',
+        { opacity: [0, 1], y: [-10, 0] },
+        { duration: 0.4, delay: 0.15, easing: 'ease-out' }
+    );
+
+    // Navbar items with stagger
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach((item, index) => {
+        animate(
+            item,
+            { opacity: [0, 1], y: [-10, 0] },
+            { duration: 0.4, delay: 0.2 + (index * 0.1), easing: 'ease-out' }
+        );
+    });
+
     // Mobile menu toggle
     const menuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
