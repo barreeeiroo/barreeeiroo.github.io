@@ -137,6 +137,8 @@ const timelineEvents = [
               alt="Kodular Creator Interface - Block-based visual programming editor"
               class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-300"
               quality={90}
+              loading="eager"
+              fetchpriority="high"
             />
             <div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-all"></div>
           </div>
@@ -146,46 +148,44 @@ const timelineEvents = [
   </section>
 
   <!-- Timeline Section -->
-  <section class="timeline-section section-animate pt-16 md:pt-24 pb-0">
-    <div class="max-w-6xl mx-auto px-6 md:px-12">
-      <h2 class="section-heading text-xs md:text-sm font-bold tracking-widest text-primary uppercase mb-8">
+  <section class="timeline-section section-animate py-16 md:py-24 px-6 md:px-12">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="section-heading text-xs md:text-sm font-bold tracking-widest text-primary uppercase mb-12">
         Timeline & Milestones
       </h2>
-    </div>
 
-    <div class="timeline-scroll-section section-content" style="height: 400vh;">
-      <div class="sticky top-0 flex flex-col items-center justify-center overflow-hidden min-h-screen">
-        <div class="timeline-parallax-container relative w-full h-80 flex items-center">
-          <!-- Horizontal line connecting cards -->
-          <div class="timeline-line absolute top-1/2 left-0 right-0 h-0.5 bg-primary/30 -translate-y-1/2"></div>
+      <!-- Year buttons -->
+      <div class="section-content flex flex-wrap gap-3 mb-8">
+        {timelineEvents.map((yearData, index) => (
+          <button
+            class={`year-btn border-2 border-primary px-6 py-3 text-xl font-bold uppercase tracking-wider transition-all hover:bg-primary hover:text-black ${index === 0 ? 'bg-primary text-black' : 'text-primary'}`}
+            data-year={yearData.year}
+          >
+            {yearData.year}
+          </button>
+        ))}
+      </div>
 
-          {timelineEvents.map((yearData, index) => (
-            <div
-              class="timeline-parallax-card timeline-card-item absolute w-96 h-80 border-2 border-primary p-6 bg-navy/90 flex flex-col"
-              data-index={index}
-            >
-              <div class="text-5xl font-bold text-primary mb-4">{yearData.year}</div>
-              <div class="space-y-3 flex-1 overflow-y-auto">
+      <!-- Events display area -->
+      <div class="year-content-container relative" style="min-height: 300px;">
+        {timelineEvents.map((yearData, index) => (
+          <div
+            class={`year-content absolute top-0 left-0 right-0 transition-opacity duration-300 ${index === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+            data-year-content={yearData.year}
+          >
+            <div class="border-4 border-primary p-6 md:p-8 bg-navy/20">
+              <h3 class="text-4xl md:text-5xl font-bold text-white mb-6 md:mb-8">{yearData.year}</h3>
+              <div class="space-y-4 md:space-y-6">
                 {yearData.events.map((event) => (
-                  <div>
-                    <div class="text-primary text-xs font-bold mb-1">{event.date}</div>
-                    <p class="text-gray-light text-sm leading-relaxed">{event.text}</p>
+                  <div class="border-l-4 border-primary pl-4 md:pl-6 py-3">
+                    <div class="text-primary text-xs md:text-sm font-bold uppercase tracking-wider mb-2">{event.date}</div>
+                    <p class="text-gray-light text-base md:text-lg">{event.text}</p>
                   </div>
                 ))}
               </div>
             </div>
-          ))}
-        </div>
-
-        <!-- Scroll hint -->
-        <div class="timeline-scroll-hint flex flex-col items-center gap-3 mt-12 pointer-events-none">
-          <p class="text-primary text-sm uppercase tracking-wider font-bold">Scroll to keep exploring</p>
-          <div class="flex gap-1">
-            <div class="w-1 h-8 bg-primary timeline-animate-scroll-1"></div>
-            <div class="w-1 h-8 bg-primary timeline-animate-scroll-2"></div>
-            <div class="w-1 h-8 bg-primary timeline-animate-scroll-3"></div>
           </div>
-        </div>
+        ))}
       </div>
     </div>
   </section>
@@ -330,6 +330,7 @@ const timelineEvents = [
                 alt="Kodular Creator - Block-based programming interface"
                 class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-300"
                 quality={90}
+                loading="eager"
               />
               <div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-all"></div>
             </div>
@@ -344,6 +345,7 @@ const timelineEvents = [
                 alt="Kodular Creator - Project settings configuration"
                 class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-300"
                 quality={90}
+                loading="eager"
               />
               <div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-all"></div>
             </div>
@@ -358,6 +360,7 @@ const timelineEvents = [
                 alt="Kodular Creator - Projects management dashboard"
                 class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-300"
                 quality={90}
+                loading="eager"
               />
               <div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-all"></div>
             </div>
@@ -372,6 +375,7 @@ const timelineEvents = [
                 alt="Kodular Creator - APK build and export interface"
                 class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-300"
                 quality={90}
+                loading="eager"
               />
               <div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-all"></div>
             </div>
@@ -427,7 +431,7 @@ const timelineEvents = [
         accessibleAnimate(
           content,
           { opacity: [0, 1], y: [20, 0] },
-          { duration: 0.6, delay: getAnimationDelay(0.2), easing: 'ease-out' }
+          { duration: 0.5, delay: getAnimationDelay(0.05), easing: 'ease-out' }
         );
       }
 
@@ -466,102 +470,63 @@ const timelineEvents = [
         });
       }
 
-      // Animate timeline
-      if (section.classList.contains('timeline-section')) {
-        const timelineLine = section.querySelector('.timeline-line');
-        if (timelineLine) {
-          accessibleAnimate(
-            timelineLine,
-            { opacity: [0, 0.3], scaleX: [0, 1] },
-            { duration: 0.8, delay: getAnimationDelay(0.2), easing: 'ease-out' }
-          );
-        }
-
-        const timelineCards = section.querySelectorAll('.timeline-card-item');
-        timelineCards.forEach((card, index) => {
-          accessibleAnimate(
-            card,
-            { opacity: [0, 1], scale: [0.9, 1] },
-            { duration: 0.6, delay: getAnimationDelay(0.25 + index * 0.05), easing: 'ease-out' }
-          );
-        });
-
-        const scrollHint = section.querySelector('.timeline-scroll-hint');
-        if (scrollHint) {
-          accessibleAnimate(
-            scrollHint,
-            { opacity: [0, 1], y: [20, 0] },
-            { duration: 0.5, delay: getAnimationDelay(0.6), easing: 'ease-out' }
-          );
-        }
-      }
     }
   });
 </script>
 
-<script is:inline define:vars={{ timelineEvents }}>
-  window.timelineEvents = timelineEvents;
-</script>
-
 <script>
-  import { scroll, animate } from 'motion';
-
+  // Year selector functionality
   document.addEventListener('DOMContentLoaded', () => {
-    const timelineEvents = window.timelineEvents;
+    const yearButtons = document.querySelectorAll('.year-btn');
+    const yearContents = document.querySelectorAll('.year-content');
+    const container = document.querySelector('.year-content-container');
 
-    // Parallax Timeline
-    const timelineSection = document.querySelector('.timeline-scroll-section');
-    const timelineCards = document.querySelectorAll('.timeline-parallax-card');
-    const scrollHint = document.querySelector('.timeline-scroll-hint');
-
-    if (timelineSection) {
-      // Fade out scroll hint as user scrolls
-      if (scrollHint) {
-        scroll(
-          animate(scrollHint, {
-            opacity: [1, 0]
-          }),
-          {
-            target: timelineSection,
-            offset: ['start start', '10% start']
-          }
-        );
+    // Function to update container height
+    const updateContainerHeight = (activeContent) => {
+      if (container && activeContent) {
+        const height = activeContent.offsetHeight;
+        container.style.minHeight = height + 'px';
       }
+    };
 
-      const totalCards = timelineCards.length;
-      const cardWidth = 384; // w-96
-      const viewportWidth = window.innerWidth;
-
-      // Center position
-      const centerX = (viewportWidth - cardWidth) / 2;
-      // Spacing between cards (reduced to show 3 cards on screen)
-      const spacing = cardWidth + 80; // card width + gap between cards
-
-      timelineCards.forEach((card, index) => {
-        // Initial position: first card centered, others spaced to the right
-        const initialX = centerX + (index * spacing);
-
-        // Final position: last card centered, others to the left
-        const finalX = centerX + ((index - (totalCards - 1)) * spacing);
-
-        // Different parallax speeds for subtle depth effect
-        const parallaxFactor = 1 + (index * 0.03);
-        const adjustedFinalX = finalX * parallaxFactor;
-
-        // Set initial position immediately
-        (card as HTMLElement).style.transform = `translateX(${initialX}px)`;
-
-        scroll(
-          animate(card, {
-            x: [initialX, adjustedFinalX]
-          }),
-          {
-            target: timelineSection,
-            offset: ['start start', 'end end']
-          }
-        );
-      });
+    // Set initial height
+    const initialContent = document.querySelector('.year-content.opacity-100');
+    if (initialContent) {
+      updateContainerHeight(initialContent);
     }
+
+    yearButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const selectedYear = button.getAttribute('data-year');
+
+        // Update button states
+        yearButtons.forEach(btn => {
+          if (btn.getAttribute('data-year') === selectedYear) {
+            btn.classList.add('bg-primary', 'text-black');
+            btn.classList.remove('text-primary');
+          } else {
+            btn.classList.remove('bg-primary', 'text-black');
+            btn.classList.add('text-primary');
+          }
+        });
+
+        // Show selected year content with fade
+        yearContents.forEach(content => {
+          if (content.getAttribute('data-year-content') === selectedYear) {
+            content.classList.remove('opacity-0', 'pointer-events-none');
+            content.classList.add('opacity-100');
+
+            // Update container height
+            setTimeout(() => {
+              updateContainerHeight(content);
+            }, 50);
+          } else {
+            content.classList.add('opacity-0', 'pointer-events-none');
+            content.classList.remove('opacity-100');
+          }
+        });
+      });
+    });
   });
 </script>
 
@@ -577,20 +542,14 @@ const timelineEvents = [
     opacity: 0;
   }
 
-  /* Timeline parallax */
-  .timeline-parallax-card {
-    will-change: transform, opacity;
-  }
-
-  .timeline-scroll-section {
+  /* Timeline year selector */
+  .year-content-container {
     position: relative;
+    transition: min-height 0.3s ease;
   }
 
-  /* Timeline initial states */
-  .timeline-line,
-  .timeline-card-item,
-  .timeline-scroll-hint {
-    opacity: 0;
+  .year-content {
+    transition: opacity 0.3s ease;
   }
 
   /* Stat hover effects */
@@ -601,22 +560,5 @@ const timelineEvents = [
   /* Partnership hover effects */
   .partnership-item:hover .partnership-title {
     transform: translateX(5px);
-  }
-
-  @keyframes timeline-scroll-bounce {
-    0%, 100% { transform: translateY(0); opacity: 0.5; }
-    50% { transform: translateY(8px); opacity: 1; }
-  }
-
-  .timeline-animate-scroll-1 {
-    animation: timeline-scroll-bounce 1.5s ease-in-out infinite;
-  }
-
-  .timeline-animate-scroll-2 {
-    animation: timeline-scroll-bounce 1.5s ease-in-out infinite 0.2s;
-  }
-
-  .timeline-animate-scroll-3 {
-    animation: timeline-scroll-bounce 1.5s ease-in-out infinite 0.4s;
   }
 </style>
