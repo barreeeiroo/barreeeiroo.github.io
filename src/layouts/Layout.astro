@@ -3,7 +3,7 @@ import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import SideDecoration from '../components/SideDecoration.astro';
-import { FULL_NAME, ROLE, EMAIL_ADDRESS, GITHUB_LINK, LINKEDIN_LINK, X_LINK } from '../config';
+import { FULL_NAME, ROLE, EMAIL_ADDRESS, GITHUB_LINK, LINKEDIN_LINK, X_LINK, GA4_MEASUREMENT_ID } from '../config';
 import profilePhoto from '../assets/profile.jpg';
 
 interface Props {
@@ -88,6 +88,21 @@ const websiteSchema = {
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+
+    <!-- Google Analytics 4 -->
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`}></script>
+    <script is:inline define:vars={{ GA4_MEASUREMENT_ID }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', GA4_MEASUREMENT_ID, {
+        anonymize_ip: true,
+        cookie_flags: 'SameSite=None;Secure',
+        allow_google_signals: false,
+        allow_ad_personalization_signals: false
+      });
+    </script>
   </head>
   <body class="bg-gradient-to-br from-navy via-black to-navy text-white overflow-x-hidden">
     <!-- Skip to main content link for keyboard users -->
