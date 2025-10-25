@@ -1,43 +1,28 @@
 ---
 import ProjectLayout from '../../layouts/ProjectLayout.astro';
-import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import featuredImage from '../../assets/featured/timetable.png';
 
-// Project data
 const title = "University Timetable Solver";
-const description = "An intelligent scheduling system that tackles the notoriously complex Curriculum-Based Course Timetabling problem using Answer-Set Programming.";
-const technologies = ["Python", "React", "ASP/Clingo", "AWS"];
-const githubUrl = "https://github.com/barreeeiroo/TFG-Timetable-Solvers-ASP";
-const externalUrl = "https://timetable.barreiro.dev/";
+const description = "An intelligent scheduling system developed as my final thesis project that tackles the notoriously complex Curriculum-Based Course Timetabling problem using Answer-Set Programming.";
 ---
 
 <ProjectLayout title={title} description={description}>
-  <!-- Project Detail -->
-  <section class="px-6 md:px-6 pb-16 md:pb-24">
-    <div class="max-w-5xl mx-auto">
-      <!-- Technologies -->
-      <div class="mb-8">
-        <div class="flex flex-wrap gap-3 mb-6">
-          {technologies.map((tech) => (
-            <span class="text-xs uppercase tracking-wider border-2 border-primary px-3 py-2 text-primary font-bold">
-              {tech}
-            </span>
-          ))}
+  <!-- Project Info Section -->
+  <section class="section-animate px-6 md:px-12 pb-16 md:pb-24">
+    <div class="max-w-6xl mx-auto">
+      <!-- Role & Links -->
+      <div class="section-content mb-12">
+        <div class="inline-block border-2 border-primary px-4 py-2 mb-6">
+          <p class="text-primary font-bold uppercase tracking-wider text-sm">
+            Final Thesis Project & Developer
+          </p>
         </div>
 
-        <!-- Links -->
-        <div class="flex gap-4">
+        <div class="flex gap-6 flex-wrap">
           <a
-            href={githubUrl}
-            class="inline-flex items-center gap-2 text-gray-light hover:text-primary transition-colors text-sm uppercase tracking-wider"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Icon name="carbon:logo-github" class="w-5 h-5" />
-            View on GitHub
-          </a>
-          <a
-            href={externalUrl}
+            href="https://timetable.barreiro.dev/"
             class="inline-flex items-center gap-2 text-gray-light hover:text-primary transition-colors text-sm uppercase tracking-wider"
             target="_blank"
             rel="noopener noreferrer"
@@ -45,35 +30,349 @@ const externalUrl = "https://timetable.barreiro.dev/";
             <Icon name="carbon:launch" class="w-5 h-5" />
             Live Demo
           </a>
+          <a
+            href="https://github.com/barreeeiroo/TFG-Timetable-Solvers-ASP"
+            class="inline-flex items-center gap-2 text-gray-light hover:text-primary transition-colors text-sm uppercase tracking-wider"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Icon name="carbon:logo-github" class="w-5 h-5" />
+            GitHub
+          </a>
+          <a
+            href="https://diego.gal/tfg"
+            class="inline-flex items-center gap-2 text-gray-light hover:text-primary transition-colors text-sm uppercase tracking-wider"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Icon name="carbon:document" class="w-5 h-5" />
+            Thesis Paper
+          </a>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- Project Content -->
-      <div class="border-l-2 md:border-l-4 border-primary pl-6 md:pl-8 mb-12">
-        <div class="prose prose-invert prose-lg max-w-none text-gray-light [&>p]:mb-6 [&>p]:leading-relaxed">
-          <p>
-            Content for University Timetable Solver project page will go here.
+  <!-- Stats Section -->
+  <section class="section-animate py-16 md:py-24 px-6 md:px-12 bg-navy/50">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="section-heading text-xs md:text-sm font-bold tracking-widest text-primary uppercase mb-12">
+        Project Highlights
+      </h2>
+
+      <div class="section-content grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 items-start">
+        <!-- Stats - Left Side -->
+        <div class="space-y-8">
+          <!-- Stat 1 -->
+          <div class="stat-item border-l-4 border-primary pl-6 transition-all duration-300 hover:pl-8 hover:border-l-8">
+            <div class="stat-number text-5xl md:text-6xl font-bold text-white mb-2 transition-transform duration-300">100%</div>
+            <div class="text-gray-light uppercase tracking-wider text-sm">Serverless</div>
+            <div class="text-gray-light/60 text-xs mt-1">AWS Architecture</div>
+          </div>
+
+          <!-- Stat 2 -->
+          <div class="stat-item border-l-4 border-primary pl-6 transition-all duration-300 hover:pl-8 hover:border-l-8">
+            <div class="stat-number text-5xl md:text-6xl font-bold text-white mb-2 transition-transform duration-300">ASP</div>
+            <div class="text-gray-light uppercase tracking-wider text-sm">Constraint Solving</div>
+            <div class="text-gray-light/60 text-xs mt-1">Answer-Set Programming</div>
+          </div>
+
+          <!-- Stat 3 -->
+          <div class="stat-item border-l-4 border-primary pl-6 transition-all duration-300 hover:pl-8 hover:border-l-8">
+            <div class="stat-number text-5xl md:text-6xl font-bold text-white mb-2 transition-transform duration-300">Open</div>
+            <div class="text-gray-light uppercase tracking-wider text-sm">Source Algorithm</div>
+            <div class="text-gray-light/60 text-xs mt-1">Research Contribution</div>
+          </div>
+        </div>
+
+        <!-- Platform Screenshot - Right Side (Larger) -->
+        <div class="relative group">
+          <div class="border-2 border-primary absolute inset-0 translate-x-3 translate-y-3 transition-transform group-hover:translate-x-1 group-hover:translate-y-1"></div>
+          <div class="relative overflow-hidden border-2 border-primary bg-black">
+            <Image
+              src={featuredImage}
+              alt="University Timetable Solver Interface"
+              class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-300"
+              quality={90}
+              loading="eager"
+              fetchpriority="high"
+            />
+            <div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-all"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Features Section -->
+  <section class="section-animate py-16 md:py-24 px-6 md:px-12">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="section-heading text-xs md:text-sm font-bold tracking-widest text-primary uppercase mb-12">
+        About The Project
+      </h2>
+
+      <div class="section-content">
+        <!-- Description -->
+        <div class="border-l-4 border-primary pl-6 mb-12">
+          <p class="text-gray-light text-lg leading-relaxed mb-4">
+            The platform combines a powerful constraint-solving engine using Answer-Set Programming (ASP) with Clingo, wrapped in a user-friendly React interface. This tackles the notoriously complex Curriculum-Based Course Timetabling problem, a well-known NP-complete challenge in computer science.
+          </p>
+          <p class="text-gray-light text-lg leading-relaxed">
+            Architected as a fully serverless solution on AWS using Lambda, DynamoDB, and S3, the system handles intricate university scheduling constraints from room capacities and teacher availability to course prerequisites and student preferences.
           </p>
         </div>
-      </div>
 
-      <!-- Navigation -->
-      <div class="flex justify-between items-center pt-8 border-t-2 border-primary/20">
-        <a
-          href="/projects"
-          class="inline-flex items-center gap-2 text-gray-light hover:text-primary transition-colors text-sm uppercase tracking-wider"
-        >
-          <Icon name="carbon:arrow-left" class="w-4 h-4" />
-          All Projects
-        </a>
-        <a
-          href="/"
-          class="inline-flex items-center gap-2 text-gray-light hover:text-primary transition-colors text-sm uppercase tracking-wider"
-        >
-          Home
-          <Icon name="carbon:arrow-right" class="w-4 h-4" />
-        </a>
+        <!-- Features Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Scheduling Features -->
+        <div>
+          <h3 class="text-xl font-bold text-white mb-6 uppercase tracking-wider border-b-2 border-primary pb-3">
+            Core Capabilities
+          </h3>
+          <ul class="space-y-3 text-gray-light">
+            <li class="flex items-start gap-3">
+              <span class="text-primary text-lg">→</span>
+              <span>Automated timetable generation using constraint solving</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-primary text-lg">→</span>
+              <span>Room capacity and availability management</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-primary text-lg">→</span>
+              <span>Teacher scheduling and conflict resolution</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-primary text-lg">→</span>
+              <span>Course prerequisites and dependencies handling</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-primary text-lg">→</span>
+              <span>Student preferences and constraints optimization</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Technical Features -->
+        <div>
+          <h3 class="text-xl font-bold text-white mb-6 uppercase tracking-wider border-b-2 border-primary pb-3">
+            Technical Features
+          </h3>
+          <ul class="space-y-3 text-gray-light">
+            <li class="flex items-start gap-3">
+              <span class="text-primary text-lg">→</span>
+              <span>Serverless architecture for scalability</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-primary text-lg">→</span>
+              <span>Answer-Set Programming engine (Clingo)</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-primary text-lg">→</span>
+              <span>Modern React-based user interface</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-primary text-lg">→</span>
+              <span>Real-time constraint validation</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-primary text-lg">→</span>
+              <span>Export and integration capabilities</span>
+            </li>
+          </ul>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack Section -->
+  <section class="section-animate py-16 md:py-24 px-6 md:px-12 bg-navy/50">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="section-heading text-xs md:text-sm font-bold tracking-widest text-primary uppercase mb-12">
+        Technology Stack
+      </h2>
+
+      <div class="section-content grid grid-cols-1 md:grid-cols-2 gap-12">
+        <!-- Tech Stack -->
+        <div>
+          <h3 class="text-xl font-bold text-white mb-6 uppercase tracking-wider border-b-2 border-primary pb-3">
+            Technologies
+          </h3>
+          <ul class="space-y-3 text-gray-light">
+            <li class="flex items-start gap-3">
+              <span class="text-primary">•</span>
+              <span><strong class="text-white">Solver Engine:</strong> Python, Clingo (ASP)</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-primary">•</span>
+              <span><strong class="text-white">Frontend:</strong> React, JavaScript</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-primary">•</span>
+              <span><strong class="text-white">Backend:</strong> Python, AWS Lambda</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-primary">•</span>
+              <span><strong class="text-white">Database:</strong> DynamoDB</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-primary">•</span>
+              <span><strong class="text-white">Infrastructure:</strong> AWS (Lambda, S3, DynamoDB)</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Problem Domain -->
+        <div>
+          <h3 class="text-xl font-bold text-white mb-6 uppercase tracking-wider border-b-2 border-primary pb-3">
+            Problem Domain
+          </h3>
+          <div class="flex flex-wrap gap-3">
+            <span class="border-2 border-primary px-4 py-2 text-primary font-bold text-sm uppercase tracking-wider">NP-Complete</span>
+            <span class="border-2 border-primary px-4 py-2 text-primary font-bold text-sm uppercase tracking-wider">Constraint Satisfaction</span>
+            <span class="border-2 border-primary px-4 py-2 text-primary font-bold text-sm uppercase tracking-wider">Optimization</span>
+            <span class="border-2 border-primary px-4 py-2 text-primary font-bold text-sm uppercase tracking-wider">Academic Research</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo Videos Section -->
+  <section class="section-animate py-16 md:py-24 px-6 md:px-12">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="section-heading text-xs md:text-sm font-bold tracking-widest text-primary uppercase mb-12">
+        Platform Demonstrations
+      </h2>
+
+      <div class="section-content grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Video 1 -->
+        <div class="video-item relative group">
+          <div class="border-2 border-primary absolute inset-0 translate-x-2 translate-y-2 transition-transform group-hover:translate-x-1 group-hover:translate-y-1"></div>
+          <div class="relative overflow-hidden border-2 border-primary bg-black aspect-video">
+            <iframe
+              class="w-full h-full"
+              src="https://www.youtube-nocookie.com/embed/jeqs67kjyJs"
+              title="University Timetable Solver Demo 1"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+
+        <!-- Video 2 -->
+        <div class="video-item relative group">
+          <div class="border-2 border-primary absolute inset-0 translate-x-2 translate-y-2 transition-transform group-hover:translate-x-1 group-hover:translate-y-1"></div>
+          <div class="relative overflow-hidden border-2 border-primary bg-black aspect-video">
+            <iframe
+              class="w-full h-full"
+              src="https://www.youtube-nocookie.com/embed/i2CkpoFl674"
+              title="University Timetable Solver Demo 2"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact Section -->
+  <section class="section-animate py-16 md:py-24 px-6 md:px-12 bg-navy/50">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="section-heading text-xs md:text-sm font-bold tracking-widest text-primary uppercase mb-12">
+        Academic Contribution
+      </h2>
+
+      <div class="section-content">
+        <div class="border-l-4 border-primary pl-6 space-y-6">
+          <p class="text-gray-light text-lg leading-relaxed">
+            This project served as my final thesis (TFG - Trabajo de Fin de Grado) at the University of Santiago de Compostela, exploring the practical application of Answer-Set Programming to real-world scheduling challenges.
+          </p>
+          <p class="text-gray-light text-lg leading-relaxed">
+            The solving algorithm is open-source, contributing to academic research in automated scheduling and constraint satisfaction problems. The serverless architecture demonstrates how modern cloud technologies can be leveraged to solve computationally intensive problems efficiently.
+          </p>
+          <p class="text-gray-light text-lg leading-relaxed">
+            By making the algorithm publicly available, this project supports further research and development in the field of automated timetabling systems.
+          </p>
+        </div>
       </div>
     </div>
   </section>
 </ProjectLayout>
+
+<script>
+  import { accessibleAnimate, getAnimationDelay } from '../../utils/motion';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const observerOptions = {
+      root: null,
+      threshold: 0.1,
+      rootMargin: '0px 0px 100px 0px'
+    };
+
+    const animatedSections = new Set<Element>();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !animatedSections.has(entry.target)) {
+          animatedSections.add(entry.target);
+          animateSection(entry.target as HTMLElement);
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections
+    const sections = document.querySelectorAll('.section-animate');
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+
+    function animateSection(section: HTMLElement) {
+      // Animate section heading
+      const heading = section.querySelector('.section-heading');
+      if (heading) {
+        accessibleAnimate(
+          heading,
+          { opacity: [0, 1], y: [-20, 0] },
+          { duration: 0.6, easing: 'ease-out' }
+        );
+      }
+
+      // Animate section content
+      const content = section.querySelector('.section-content');
+      if (content) {
+        accessibleAnimate(
+          content,
+          { opacity: [0, 1], y: [20, 0] },
+          { duration: 0.5, delay: getAnimationDelay(0.05), easing: 'ease-out' }
+        );
+      }
+
+      // Animate videos
+      const videos = section.querySelectorAll('.video-item');
+      videos.forEach((video, index) => {
+        accessibleAnimate(
+          video,
+          { opacity: [0, 1], y: [30, 0] },
+          { duration: 0.6, delay: getAnimationDelay(0.3 + index * 0.15), easing: 'ease-out' }
+        );
+      });
+    }
+  });
+</script>
+
+<style>
+  /* Stat hover effects */
+  .stat-item:hover .stat-number {
+    transform: scale(1.05);
+  }
+
+  /* Video items */
+  .video-item {
+    opacity: 0;
+  }
+</style>
