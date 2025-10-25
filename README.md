@@ -1,3 +1,3 @@
-# barreeeiroo.github.io-dev
+# barreeeiroo.github.io
 
-My Personal Website - WIP
+My Personal Website
