@@ -5,10 +5,10 @@ github: 'https://github.com/Kodular/TinyWebDB-OneClick'
 company: 'Kodular'
 tech:
   - TypeScript
-  - Redis
-  - SQL
   - Vercel
   - Cloudflare Workers
+  - SQL
+  - Redis
 ---
 
 A modernized, cloud-agnostic implementation of TinyWebDB for App Inventor featuring one-click deployments to multiple cloud platforms.

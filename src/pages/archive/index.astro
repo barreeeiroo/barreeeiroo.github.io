@@ -18,6 +18,8 @@ const projectsWithContent = await Promise.all(
     return { ...project, Content };
   })
 );
+
+const MAX_TECH_DEFAULT = 3;
 ---
 
 <Layout
@@ -66,17 +68,17 @@ const projectsWithContent = await Promise.all(
                         <div class="flex flex-wrap gap-2">
                           {project.data.tech.map((tech, techIndex) => (
                             <span
-                              class={`tech-tag px-2 py-1 bg-black border border-primary text-primary font-mono ${techIndex >= 3 ? 'hidden-tech' : ''}`}
+                              class={`tech-tag px-2 py-1 bg-black border border-primary text-primary font-mono ${techIndex >= MAX_TECH_DEFAULT ? 'hidden-tech' : ''}`}
                             >
                               {tech}
                             </span>
                           ))}
-                          {project.data.tech.length > 3 && (
+                          {project.data.tech.length > MAX_TECH_DEFAULT && (
                             <button
                               class="tech-more-btn px-2 py-1 text-gray-light hover:text-primary transition-colors cursor-pointer font-mono"
                               aria-label={`Show all ${project.data.tech.length} technologies`}
                             >
-                              +{project.data.tech.length - 3}
+                              +{project.data.tech.length - MAX_TECH_DEFAULT}
                             </button>
                           )}
                         </div>
