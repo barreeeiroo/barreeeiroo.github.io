@@ -5,8 +5,8 @@ github: 'https://github.com/Kodular/TinyWebDB-OneClick'
 company: 'Kodular'
 tech:
   - TypeScript
-  - Cloudflare Workers
   - Vercel
+  - Cloudflare Workers
   - Redis
   - SQL
 ---
