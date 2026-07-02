@@ -7,9 +7,9 @@ mobile: 'https://play.google.com/store/apps/details?id=io.makeroid.companion'
 company: 'Junnovate Limited'
 tech:
   - Java
-  - Python
+  - TypeScript
   - Android
-  - GCP
+  - Kubernetes
 ---
 
 Kodular is an online platform which enables everyone to create any kind of mobile app without the need to know how to
