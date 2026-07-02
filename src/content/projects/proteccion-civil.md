@@ -7,7 +7,7 @@ externalUrl: "https://proteccioncivil.sdc.gal/"
 order: 2
 ---
 
-A comprehensive digital transformation solution for civil defense operations in Santiago de Compostela.
+An end-to-end digital transformation solution for civil defense operations in Santiago de Compostela.
 This dual-platform system includes an internal resource management tool and a public-facing website, completely
 replacing decades-old paper-based workflows with an intuitive web-based system.
 
