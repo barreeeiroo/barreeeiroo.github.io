@@ -16,4 +16,4 @@ Kodular is an online platform which enables everyone to create any kind of mobil
 code. Just by dragging and dropping a few components and blocks, anything can be created.
 
 In Summer 2017, this project started as some kind of part-time project made by high-school students. It kept growing
-and became a full company in 2019. More than 2M apps have been created since then.
+and became a full company in 2019. More than 5M apps have been created since then.

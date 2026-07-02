@@ -5,7 +5,7 @@ startDate: "Jul 2017"
 order: 3
 ---
 
-- Leading a platform that has empowered users to create over 2 million Android apps without coding
+- Leading a platform that has empowered users to create over 5 million Android apps without coding
 - Architected and scaled a Service-as-a-Service infrastructure using Java (GWT) and TypeScript (TanStack Start)
 - Managing cloud operations across Kubernetes and AWS, ensuring 99.9% uptime for our global user base
 - Successfully integrated AppyBuilder and established strategic partnerships with major tech companies including Google

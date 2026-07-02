@@ -11,5 +11,5 @@ A comprehensive drag-and-drop platform that democratizes mobile app development,
 without writing a single line of code. What started as a high school side project in 2017 has evolved into a
 full-fledged company with strategic partnerships including Google.
 
-Built with Java (GWT) and TypeScript (TanStack Start) on scalable cloud infrastructure, Kodular has powered over 2 million apps
+Built with Java (GWT) and TypeScript (TanStack Start) on scalable cloud infrastructure, Kodular has powered over 5 million apps
 created by developers worldwide, proving that sophisticated development tools can be accessible to everyone.
